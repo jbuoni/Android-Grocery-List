@@ -13,6 +13,7 @@
 - Though the design as a whole is good, the document itself is hard to follow. Could be cleaned up
 - Could investigate splitting the controller class
 - Could investigate some of the relationships, though at the moment, they seem to be sufficient
+- Using "ListItem" and "ItemList" as class names is kind of confusing.  At least on of those classes should be renamed.
 
 ###[Design 2](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Design-Individual/jbuoni3/design.pdf)
 ![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/jason.png "Design 2")
