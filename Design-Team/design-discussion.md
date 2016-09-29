@@ -26,7 +26,7 @@ TODO
 
  [Design 4](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Design-Individual/zmyrick3/design.pdf)
  
- ![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/thomas.png "Design 4")
+ ![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/zach.png "Design 4")
 
  TODO 
 
@@ -34,7 +34,7 @@ TODO
 
  [Team Design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Design-Individual/dbansch3/design.pdf)
 
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/zach.png "Team Design")
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/daniel.png "Team Design")
 
  TODO 
 
