@@ -1,6 +1,6 @@
 # Design 1 (Daniel)
 
-![alt text](https://github.gatech.edu/6300Fall16Team47/Design-Individual/dbansch3/design.pdf "Design 1")
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Design-Individual/dbansch3/design.pdf "Design 1")
 
 TODO 
 
