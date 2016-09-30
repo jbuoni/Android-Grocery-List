@@ -13,7 +13,7 @@
 - Though the design as a whole is good, the document itself is hard to follow. Could be cleaned up
 - Could investigate splitting the controller class
 - Could investigate some of the relationships, though at the moment, they seem to be sufficient
-- Using "ListItem" and "ItemList" as class names is kind of confusing.  At least on of those classes should be renamed.
+- Using "ListItem" and "ItemList" as class names is kind of confusing.  At least one of those classes should be renamed.
 
 ###[Design 2](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Design-Individual/jbuoni3/design.pdf)
 ![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/jason.png "Design 2")
@@ -76,3 +76,8 @@ The team design is based on Design 1 with a few modifications to address some of
 The Controller class is broken up into three sub-classes and one abstract super class.  The sub-classes each handle the controls for one of the GUI views of the application.  ItemMgmtController handles the selection and creation of Items, ListsController handles the management of the Users current GroceryLists, and ListMgmtController handles the management of the user's current GroceryList.  This design will make the Controller functions easier to work with, because each class will handle fewer functions that are only related to one View of the application.
 
 Finally, an Interface called DAOI is added to the design.  The controller will use this interface to store and get database objects rather than using the DAO class itself.  This will shield the Controller class from changes that are made to the DAO class as long as the interface remains constant.
+
+####SUMMARY
+
+A number of different things occurred to us when we were discussing the separate designs. The first is when discussing your own design, you can quickly realize many flaws you did not see when you explain it to your fellow team members. Additionally, no matter how far off a design may be, and can provide something useful that the final design may want to include (so don’t discount any design right away). In terms of teamwork it is also important that every team member contributes to the analysis of the different designs. Diversity of feedback is very important, as no matter how “crazy” some feedback may be it may spur more interesting ideas. For our group we did not see any defensiveness or attacks, but we did note that use of either of those conversations styles would been counterproductive to final design.
+
