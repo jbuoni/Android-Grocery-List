@@ -1,0 +1,25 @@
+#Overview
+- All members attended
+- Jason added template files to the Docs folder
+
+###Four items due
+ - Design Doc
+ - Use Case
+ - Test Plan
+ - Project Plan
+
+
+#Project Reqs
+- Use SQLite
+
+#For next meeting (Thursday)
+###Make a first pass at each document
+ - Design Doc - Daniel, with help from Jason
+ 	- Notes on who does what are split up with TODOS
+ - Use Case - Zack
+ - Test Plan - Thomas
+ - Project Plan - Jason
+
+###Other tasks
+- All members must add their team portion to the Project plan
+- Jason will set up the Android repository
