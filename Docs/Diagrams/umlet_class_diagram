@@ -1,0 +1,116 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>120</x><y>674</y><w>210</w><h>150</h></coordinates><panel_attributes>Item
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
++getType(): ItemType
++setType(itemType: ItemType)
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>684</y><w>170</w><h>120</h></coordinates><panel_attributes>ItemType
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>704</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=0..n
+</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>120</x><y>394</y><w>200</w><h>220</h></coordinates><panel_attributes>ListItem
+--
+-checked: boolean
+-quantity: Integer
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getQuantity(): Integer
++setQuantity(qty: Integer)
++getItem(): Item
++setItem(item: Item)
++getID(id: Integer)
++setChecked(checked: boolean)
++getChecked():boolean
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>604</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=0..n</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>394</y><w>240</w><h>220</h></coordinates><panel_attributes>GroceryList
+--
+-name: String
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getID(): Integer
++getAllListItems(): List&lt;ListItem&gt;
++getListItemByID(id: Integer): ListItem
++addListItem(item: Item)
++removeListItem(id: Integer)
++clearChecks()
++checkListItem(id: Integer)
+-sortList()
+
+group=2</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>514</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>254</y><w>360</w><h>80</h></coordinates><panel_attributes>DAO extends SQLiteOpenHelper
+--
++static final int DATABASE_VERSION
++static final String DATABASE_NAME
+--
++onCreate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>324</y><w>170</w><h>420</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>40;400;10;400;10;40;150;40;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>324</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>50</x><y>314</y><w>460</w><h>550</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>440;490;440;530;10;530;10;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>154</y><w>370</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=1</panel_attributes><additional_attributes>350;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>524</y><w>480</w><h>100</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;80;460;80;460;10</additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>364</y><w>980</w><h>330</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;310;10;280;960;280;960;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>990</x><y>394</y><w>230</w><h>140</h></coordinates><panel_attributes>ListMgmtActivity extends Activity
+--
+--
++addListItem(View view)
++removeListItem(View view)
++checkListItem(View view)
++uncheckAll(View view)
++onCreate(Bundle savedInstance)
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>394</y><w>230</w><h>140</h></coordinates><panel_attributes>ListsActivity extends Activity
+--
+--
++showAllItemLists(View view)
++deleteList(View view)
++renameList(View view)
++createList(View view)
++selectList(View view)
++onCreate(Bundle savedInstance)
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1060</x><y>274</y><w>230</w><h>100</h></coordinates><panel_attributes>ItemSearchActivity
+--
+--
++enterTextInItemSearch(View view)
++selectItemToAdd(View view)
++createNewItem(View view)
++onCreate(Bundle savedInstance)
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>524</y><w>240</w><h>70</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;50;220;50;220;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>45</y><w>360</w><h>180</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+DAOI
+--
+--
++saveList(itemList: ItemList): ItemList
++loadList(id: Integer): List
++deleteList(itemList: ItemList)
++saveItem(item: Item): Item
++findItemsLike(search: String): List&lt;Item&gt;
++getItemsByItemType(itemType:ItemType): List&lt;Item&gt;
++getAllItemTypes(): List&lt;ItemType&gt;
++getAllLists(): List&lt;ItemList&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>215</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>890</x><y>125</y><w>240</w><h>90</h></coordinates><panel_attributes>ListsActivity extends Activity
+--
++daoi: DAOI
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>264</y><w>230</w><h>100</h></coordinates><panel_attributes>AddItemByTypeActivity
+--
+--
++addSelectedItem(View view)
++selectItem(View view)
++selectItemType(View view)
++onCreate(Bundle savedInstance)
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>354</y><w>1000</w><h>340</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;320;10;280;980;280;980;30;540;30;540;10</additional_attributes></element><element><id>Relation</id><coordinates><x>920</x><y>205</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1100</x><y>205</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1030</x><y>205</y><w>30</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>205</y><w>70</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;50;170;10;170;10;190</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>40</x><y>10</y><w>640</w><h>900</h></coordinates><panel_attributes>Model</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>710</x><y>20</y><w>620</w><h>700</h></coordinates><panel_attributes>GUI</panel_attributes><additional_attributes></additional_attributes></element></diagram>
