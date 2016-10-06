@@ -55,9 +55,10 @@ TODO Daniel
 
 ### 3.2 Other Diagrams 
 
-TODO Jason
+**NOTE** These diagrams are currently all in progress, and are not yet fine tuned. They will be more or less, "living documents" and the project progresses. 
 
-*<u>Optionally</u>, you can decide to describe some dynamic aspects of your system using one or more behavioral diagrams, such as sequence and state diagrams.*
+###[Sequence Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Docs/Diagrams/GLM_Sequence.pdf)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/GLM_Sequence.png "Sequence Diagram")
 
 ## 4 User Interface Design
 TODO Daniel
