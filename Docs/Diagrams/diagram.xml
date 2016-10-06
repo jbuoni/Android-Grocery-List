@@ -1,0 +1,95 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>180</x><y>729</y><w>210</w><h>150</h></coordinates><panel_attributes>Item
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
++getType(): ItemType
++setType(itemType: ItemType)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>739</y><w>170</w><h>120</h></coordinates><panel_attributes>ItemType
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>759</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=0..n
+</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>449</y><w>200</w><h>220</h></coordinates><panel_attributes>ListItem
+--
+-checked: boolean
+-quantity: Integer
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getQuantity(): Integer
++setQuantity(qty: Integer)
++getItem(): Item
++setItem(item: Item)
++getID(id: Integer)
++setChecked(checked: boolean)
++getChecked():boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>659</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=0..n</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>449</y><w>240</w><h>220</h></coordinates><panel_attributes>GroceryList
+--
+-name: String
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getID(): Integer
++getAllListItems(): List&lt;ListItem&gt;
++getListItemByID(id: Integer): ListItem
++addListItem(item: Item)
++removeListItem(id: Integer)
++clearChecks()
++checkListItem(id: Integer)
+-sortList()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>569</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>309</y><w>360</w><h>90</h></coordinates><panel_attributes>DAO
+--
+-em: EntityManager
+--
+-connectToDatabase()
++closeDatabaseConnection()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>389</y><w>170</w><h>410</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>40;390;10;390;10;30;150;30;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>389</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>369</y><w>460</w><h>550</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>440;490;440;530;10;530;10;10;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>770</x><y>149</y><w>230</w><h>70</h></coordinates><panel_attributes>/Controller/
+--
+-View view
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>149</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m1=1</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>419</y><w>450</w><h>230</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;210;430;210;430;10</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>239</y><w>870</w><h>520</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;500;50;480;850;480;850;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>950</x><y>319</y><w>230</w><h>110</h></coordinates><panel_attributes>ListMgtmController
+--
+--
++addListItem()
++removeListItem()
++checkListItem()
++uncheckAll()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>700</x><y>319</y><w>230</w><h>110</h></coordinates><panel_attributes>ListsController
+--
+--
++showAllItemLists()
++deleteList()
++renameList()
++createList()
++selectList()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1030</x><y>149</y><w>230</w><h>100</h></coordinates><panel_attributes>ItemMgmtController
+--
+--
++enterTextInItemSearch()
++selectItemType()
++addNewItem()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>419</y><w>130</w><h>130</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;110;110;110;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>189</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>209</y><w>120</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90;100;90;100;110</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>209</y><w>30</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>100</y><w>360</w><h>180</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+DAOI
+--
+--
++saveList(itemList: ItemList): ItemList
++loadList(id: Integer): List
++deleteList(itemList: ItemList)
++saveItem(item: Item): Item
++findItemsLike(search: String): List&lt;Item&gt;
++getItemsByItemType(itemType:ItemType): List&lt;Item&gt;
++getAllItemTypes(): List&lt;ItemType&gt;
++getAllLists(): List&lt;ItemList&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>270</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>
