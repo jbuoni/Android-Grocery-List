@@ -1,8 +1,6 @@
 # Design Document
 
-*This is the template for your design document. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
-
-**Author**: \<person or team name\>
+**Author**: Daniel Bansch and Jason Buoni
 
 ## 1 Design Considerations
 
