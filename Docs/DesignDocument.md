@@ -46,8 +46,8 @@ A Deployment Diagram is not necessary for this application.  There is only one n
 
 The UML class diagram of the system is shown in the following image.
 
-###[Class Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/team.png)
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/team.png "Class Diagram")
+###[Class Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/UML_Class.png)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/UML_Class.png "Class Diagram")
 
 ### 3.2 Other Diagrams 
 
