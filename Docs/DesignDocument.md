@@ -1,6 +1,6 @@
 # Design Document
 
-**Author**: Daniel Bansch and Jason Buoni
+**Authors**: Daniel Bansch and Jason Buoni
 
 ## 1 Design Considerations
 
