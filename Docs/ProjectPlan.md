@@ -83,7 +83,7 @@ The output of this is an item that is checked off of the grocery list.
 |----------|:-------------:|:--------------:|----------------:|
 | Jason    |      X        |       X        |                 |
 | Thomas   |               |                |                 |
-| Daniel   |      X        |       X        |        X       |
+| Daniel   |      X        |       X        |        X        |
 | Zack     |               |                |                 |
 
 
