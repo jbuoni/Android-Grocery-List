@@ -72,15 +72,9 @@ The output of this is an item that is checked off of the grocery list.
 - Test Engineer: Works on writing automated tests, and QA
 - Project Manager:  In charge of planning the project, setting the scope of the project, and submitting assignments.
 
-*Describe the team and their roles (there may be more roles than there are team members)*
-
-- *Team members' names*
-- *Roles, with a short description of each role*
-- *Table showing which team member(s) has which role(s)*
-
 
 | Member   | Developer     |  Test Engineer | Project Manager |
-|----------|:-------------:|:--------------:|----------------:|
+|----------|:-------------:|:--------------:|:---------------:|
 | Jason    |      X        |       X        |                 |
 | Thomas   |               |                |                 |
 | Daniel   |      X        |       X        |       X         |
