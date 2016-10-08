@@ -31,7 +31,7 @@ The output of this is a the grocery list displayed on the screen is the list the
 ### Add Item To List
 **Description**
 Users can add an item to a grocery list. Items will be searchable by name, or type. Every item will have an associated type, and all items are stored in a database. 
-If the item is not in teh database, then the user can add the item, linked to a type, which will then be added to the database. User can specify the quantity of the item they 
+If the item is not in the database, then the user can add the item, linked to a type, which will then be added to the database. User can specify the quantity of the item they 
 need to purchase. 
 
 **Enterance Criteria**
