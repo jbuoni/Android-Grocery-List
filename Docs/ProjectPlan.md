@@ -1,5 +1,5 @@
 # Project Plan
-**Author**: Jason Buoni and Daniel Bansch, Team 47
+**Authors**: Jason Buoni and Daniel Bansch, Team 47
 
 ## 1 Introduction
 
