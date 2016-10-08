@@ -11,10 +11,15 @@ For regression testing we will do a integration test for all units directly conn
 
 Some activites that will be preformed as part of are testing process and who will preform them are as follows:
 -Finite State Machine Model - Thomas Von Heill
+
 -Category-Partition test method - Thomas Von Heill
+
 -White box testing (branch coverage) - Thomas Von Heill
+
 -Alpha testing - All Team Members
+
 -Beta testing - Team Members' freinds and family
+
 ### 1.2 Test Selection
 
 We will use category-partition and branch coverage methods on all testing levels.
