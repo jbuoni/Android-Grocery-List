@@ -76,8 +76,8 @@ The output of this is an item that is checked off of the grocery list.
 | Member   | Developer     |  Test Engineer | Project Manager |
 |----------|:-------------:|:--------------:|:---------------:|
 | Jason    |      X        |       X        |                 |
-| Thomas   |               |                |                 |
+| Thomas   |      X        |       X        |                 |
 | Daniel   |      X        |       X        |       X         |
-| Zack     |               |                |                 |
+| Zack     |      X        |       X        |                 |
 
 
