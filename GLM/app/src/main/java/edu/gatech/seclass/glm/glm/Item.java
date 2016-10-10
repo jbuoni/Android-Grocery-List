@@ -1,4 +1,4 @@
-package main.java.edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.glm;
 
 /**
  * Created by danielbansch on 10/8/16.

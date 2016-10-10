@@ -1,4 +1,4 @@
-package main.java.edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.glm;
 
 import java.util.ArrayList;
 import java.util.List;

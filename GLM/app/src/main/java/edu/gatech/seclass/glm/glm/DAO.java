@@ -1,4 +1,4 @@
-package main.java.edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.glm;
 
 import android.content.ContentValues;
 import android.content.Context;
