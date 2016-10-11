@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "edu.gatech.seclass.glm.glm"
+        applicationId "edu.gatech.seclass.glm"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1

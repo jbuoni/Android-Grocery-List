@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.List;
+
+import edu.gatech.seclass.glm.Model.GroceryList;
+import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
 
 /**
  * Created by danielbansch on 10/8/16.

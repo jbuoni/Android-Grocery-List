@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.Model;
 
 /**
  * Created by danielbansch on 10/8/16.

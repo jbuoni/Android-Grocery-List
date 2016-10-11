@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("edu.gatech.seclass.glm.glm", appContext.getPackageName());
+        assertEquals("edu.gatech.seclass.glm", appContext.getPackageName());
     }
 }

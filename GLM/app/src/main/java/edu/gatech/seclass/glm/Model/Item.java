@@ -1,15 +1,15 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.Model;
 
 /**
  * Created by danielbansch on 10/8/16.
  */
 
-public class ItemType {
+public class Item {
 
     private Integer id;
     private String name;
 
-    public ItemType(Integer id, String name)
+    public Item(Integer id, String name)
     {
         this.id = id;
         this.name = name;
@@ -26,5 +26,4 @@ public class ItemType {
     public void setName(String name) {
         this.name = name;
     }
-
 }

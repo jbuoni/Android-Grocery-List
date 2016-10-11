@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm;
 
 import org.junit.Test;
 

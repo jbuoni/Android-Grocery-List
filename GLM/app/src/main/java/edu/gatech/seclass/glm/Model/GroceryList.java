@@ -1,13 +1,14 @@
-package edu.gatech.seclass.glm.glm;
+package edu.gatech.seclass.glm.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by danielbansch on 10/8/16.
  */
-
-public class GroceryList {
+@SuppressWarnings("serial")
+public class GroceryList implements Serializable {
 
     private String name;
     private Integer id;
