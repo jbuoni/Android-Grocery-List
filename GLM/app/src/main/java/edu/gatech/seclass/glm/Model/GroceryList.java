@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.Model;
+package main.java.edu.gatech.seclass.glm.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package edu.gatech.seclass.glm.DAO;
+package main.java.edu.gatech.seclass.glm.DAO;
 
 import android.provider.BaseColumns;
 

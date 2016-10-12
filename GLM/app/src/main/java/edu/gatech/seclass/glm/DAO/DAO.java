@@ -1,22 +1,25 @@
-package edu.gatech.seclass.glm.DAO;
+package main.java.edu.gatech.seclass.glm.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.seclass.glm.Model.GroceryList;
-import edu.gatech.seclass.glm.Model.Item;
-import edu.gatech.seclass.glm.Model.ItemType;
+import main.java.edu.gatech.seclass.glm.Model.GroceryList;
+import main.java.edu.gatech.seclass.glm.Model.Item;
+import main.java.edu.gatech.seclass.glm.Model.ItemType;
+import main.java.edu.gatech.seclass.glm.Model.ListItem;
 
 /**
  * Created by danielbansch on 10/8/16.
  */
 
 //// TODO: 10/8/16
-public class DAO extends SQLiteOpenHelper implements DAOI {
+public class DAO extends SQLiteOpenHelper implements main.java.edu.gatech.seclass.glm.DAO.DAOI {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "GroceryListManager.db";
@@ -171,23 +174,107 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
     }
 
     @Override
-    public GroceryList saveList(GroceryList groceryList) {
-        return null;
+    public void updateList(GroceryList groceryList) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Set the value and where clause
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.GroceryListEntry.NAME_COLUMN, groceryList.getName());
+        String selection = DatabaseContract.GroceryListEntry._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(groceryList.getId())};
+        //update the database
+        db.update(
+                DatabaseContract.GroceryListEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+    }
+
+    @Override
+    public GroceryList createList(String name) {
+        // Gets the data repository in write mode, add the list and return the GroceryList object
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.GroceryListEntry.NAME_COLUMN, name);
+        long groceryListID = db.insert(DatabaseContract.GroceryListEntry.TABLE_NAME, null, values);
+        GroceryList groceryList = new GroceryList(name, (int) groceryListID, new ArrayList<ListItem>());
+        return groceryList;
     }
 
     @Override
     public GroceryList loadList(Integer id) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor mCursor = db.rawQuery("SELECT * FROM " +
+                DatabaseContract.GroceryListEntry.TABLE_NAME +
+                " JOIN " + DatabaseContract.ListItemEntry.TABLE_NAME + " ON " +
+                DatabaseContract.GroceryListEntry.TABLE_NAME + "." + DatabaseContract.GroceryListEntry._ID +
+                "=" + DatabaseContract.ListItemEntry.TABLE_NAME + "." + DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN +
+                " JOIN " + DatabaseContract.ItemEntry.TABLE_NAME + " ON " +
+                DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
+                "=" + DatabaseContract.ListItemEntry.TABLE_NAME + "." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
+                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
+                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
+                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
+                " WHERE " + DatabaseContract.GroceryListEntry._ID + "=" + String.valueOf(id), null);
+
         return null;
+    }
+
+    @Override
+    public ListItem addItemToList(Integer groceryListID, Integer itemID, Integer quantity) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        //create the new list item, initally set isChecked to 0 (false)
+        values.put(DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN, groceryListID);
+        values.put(DatabaseContract.ListItemEntry.ITEM_COLUMN, itemID);
+        values.put(DatabaseContract.ListItemEntry.QUANTITY_COLUMN, quantity);
+        values.put(DatabaseContract.ListItemEntry.IS_CHECKED_COLUMN, 0);
+        long listItemID = db.insert(DatabaseContract.ListItemEntry.TABLE_NAME, null, values);
+        return new ListItem((int) listItemID, getItemByID(itemID), false, quantity);
     }
 
     @Override
     public void deleteList(Integer id) {
 
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Delete the ListItems for the GroceryList
+        // Set the value and where clause
+        ContentValues values = new ContentValues();
+        String selection = DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN + " = ?";
+        String[] selectionArgs = {String.valueOf(id)};
+        //delete the row from the database
+        db.delete(
+                DatabaseContract.ListItemEntry.TABLE_NAME,
+                selection,
+                selectionArgs);
+
+        //Delete the GroceryList row
+        // Set the where clause
+        selection = DatabaseContract.GroceryListEntry._ID + " = ?";
+        String[] selectionArgsGL = {String.valueOf(id)};
+        //delete the row from the database
+        db.delete(
+                DatabaseContract.GroceryListEntry.TABLE_NAME,
+                selection,
+                selectionArgsGL);
     }
 
     @Override
-    public void addNewItem(Item item) {
-
+    public Item createNewItem(String itemName, Integer itemTypeID) {
+        // Gets the data repository in write mode, add the list and return the GroceryList object
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, itemName);
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, itemTypeID);
+        long itemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        Item item = new Item((int) itemID, itemName, itemTypeID);
+        return item;
     }
 
     @Override
@@ -200,6 +287,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         return null;
     }
 
+    private Item getItemByID(Integer id) { return null; }
     @Override
     public List<ItemType> getAllItemTypes() {
         return null;
