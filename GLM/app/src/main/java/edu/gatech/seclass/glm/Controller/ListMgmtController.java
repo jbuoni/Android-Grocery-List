@@ -12,12 +12,12 @@ import edu.gatech.seclass.glm.DAO.DAO;
  * Created by jbuoni on 10/11/16.
  */
 
-public class GroceryListController {
+public class ListMgmtController {
 
     private GroceryList currentList;
     private DAO dao;
 
-    public GroceryListController(Context context){
+    public ListMgmtController(Context context){
         dao = new DAO(context);
     }
 
@@ -26,6 +26,8 @@ public class GroceryListController {
     }
 
     public List<ListItem> getCurrentListItems(){
+        //Make sure it is the most up to date version
+        currentList = dao.loadList(currentList.getId());
         return currentList.getAllListItems();
     }
 

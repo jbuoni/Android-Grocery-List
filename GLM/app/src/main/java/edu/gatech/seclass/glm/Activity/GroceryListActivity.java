@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
 
-import edu.gatech.seclass.glm.Controller.GroceryListController;
+import edu.gatech.seclass.glm.Controller.ListMgmtController;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.Utils.ItemArrayAdapter;
@@ -23,13 +22,13 @@ public class GroceryListActivity extends AppCompatActivity {
 
     private ItemArrayAdapter listAdapter;
     private List<ListItem> listItems;
-    private GroceryListController groceryListController;
+    private ListMgmtController groceryListController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        groceryListController = new GroceryListController(this.getApplicationContext());
+        groceryListController = new ListMgmtController(this.getApplicationContext());
 
         listItems = groceryListController.getCurrentListItems();
 
