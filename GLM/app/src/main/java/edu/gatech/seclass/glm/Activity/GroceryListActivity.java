@@ -12,6 +12,7 @@ import java.util.List;
 import edu.gatech.seclass.glm.Controller.GroceryListController;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.R;
+import edu.gatech.seclass.glm.Utils.ItemArrayAdapter;
 
 /**
  * GroceryListActivity generates the grocery list page.
@@ -20,7 +21,7 @@ import edu.gatech.seclass.glm.R;
 
 public class GroceryListActivity extends AppCompatActivity {
 
-    private ArrayAdapter<ListItem> listAdapter;
+    private ItemArrayAdapter listAdapter;
     private List<ListItem> listItems;
     private GroceryListController groceryListController;
 
@@ -34,7 +35,7 @@ public class GroceryListActivity extends AppCompatActivity {
 
         //Auto update the list view
         ListView lv = (ListView)findViewById(R.id.listItemContainer);
-        listAdapter = new ArrayAdapter<ListItem>(this, R.layout.grocery_list_item, listItems);
+        listAdapter = new ItemArrayAdapter(this, listItems);
         lv.setAdapter(listAdapter);
 
         generateListItemViews();

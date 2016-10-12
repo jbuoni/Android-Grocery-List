@@ -21,7 +21,7 @@ public class GroceryListController {
         dao = new DAO(context);
     }
 
-    public void setCurrentList(int listId){
+    public void updateCurrentList(int listId){
         currentList = dao.loadList(listId);
     }
 
@@ -45,6 +45,17 @@ public class GroceryListController {
 
     public void removeListItem(ListItem item){
         currentList.removeListItemById(item.getId());
+        dao.updateList(currentList);
+    }
+
+    public void updateItem(ListItem item) {
+        for (ListItem i: currentList.getAllListItems()) {
+            if(i.getId() == item.getId()){
+                currentList.removeListItemById(i.getId());
+                currentList.addListItem(item);
+            }
+        }
+
         dao.updateList(currentList);
     }
 }
