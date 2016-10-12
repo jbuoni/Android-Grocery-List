@@ -1,4 +1,6 @@
-package main.java.edu.gatech.seclass.glm.Model;
+package edu.gatech.seclass.glm.Model;
+
+import edu.gatech.seclass.glm.Model.Item;
 
 /**
  * Created by danielbansch on 10/8/16.

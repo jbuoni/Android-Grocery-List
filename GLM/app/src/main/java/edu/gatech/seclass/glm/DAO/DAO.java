@@ -1,4 +1,4 @@
-package main.java.edu.gatech.seclass.glm.DAO;
+package edu.gatech.seclass.glm.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,17 +9,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.edu.gatech.seclass.glm.Model.GroceryList;
-import main.java.edu.gatech.seclass.glm.Model.Item;
-import main.java.edu.gatech.seclass.glm.Model.ItemType;
-import main.java.edu.gatech.seclass.glm.Model.ListItem;
+import edu.gatech.seclass.glm.Model.GroceryList;
+import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
+import edu.gatech.seclass.glm.Model.ListItem;
 
 /**
  * Created by danielbansch on 10/8/16.
  */
 
 //// TODO: 10/8/16
-public class DAO extends SQLiteOpenHelper implements main.java.edu.gatech.seclass.glm.DAO.DAOI {
+public class DAO extends SQLiteOpenHelper implements DAOI {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "GroceryListManager.db";

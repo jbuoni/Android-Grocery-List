@@ -4,9 +4,9 @@ import android.content.Context;
 
 import java.util.List;
 
-import edu.gatech.seclass.glm.DAO.DAO;
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.ListItem;
+import edu.gatech.seclass.glm.DAO.DAO;
 
 /**
  * Created by jbuoni on 10/11/16.
@@ -35,6 +35,16 @@ public class GroceryListController {
 
     public void uncheckAllListItems(){
         currentList.uncheckAllListItems();
-        dao.saveList(currentList);
+        dao.updateList(currentList);
+    }
+
+    public void addListItem(ListItem item){
+        currentList.addListItem(item);
+        dao.updateList(currentList);
+    }
+
+    public void removeListItem(ListItem item){
+        currentList.removeListItemById(item.getId());
+        dao.updateList(currentList);
     }
 }

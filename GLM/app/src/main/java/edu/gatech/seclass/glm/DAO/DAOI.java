@@ -1,11 +1,11 @@
-package main.java.edu.gatech.seclass.glm.DAO;
+package edu.gatech.seclass.glm.DAO;
 
 import java.util.List;
 
-import main.java.edu.gatech.seclass.glm.Model.GroceryList;
-import main.java.edu.gatech.seclass.glm.Model.Item;
-import main.java.edu.gatech.seclass.glm.Model.ItemType;
-import main.java.edu.gatech.seclass.glm.Model.ListItem;
+import edu.gatech.seclass.glm.Model.GroceryList;
+import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
+import edu.gatech.seclass.glm.Model.ListItem;
 
 /**
  * Created by danielbansch on 10/8/16.
