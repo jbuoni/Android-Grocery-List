@@ -222,13 +222,9 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         GroceryList groceryList = null;
         if (c.moveToFirst()) {
 
-            long glId = c.getLong(
-                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry._ID)
-            );
+            long glId = c.getLong(0);
 
-            String glName = c.getString(
-                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry.NAME_COLUMN)
-            );
+            String glName = c.getString(1);
 
             groceryList = new GroceryList(glName, (int) glId, new ArrayList<ListItem>());
 
