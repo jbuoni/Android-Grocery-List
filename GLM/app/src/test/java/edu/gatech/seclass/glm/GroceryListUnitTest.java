@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotEquals;
 
 
 /**
- * ListMgmtController unit tests.
+ * GroceryList unit tests.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  * Created by jbuoni on 10/11/16.
