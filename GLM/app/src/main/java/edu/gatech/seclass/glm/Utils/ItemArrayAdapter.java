@@ -19,6 +19,7 @@ import edu.gatech.seclass.glm.R;
 
 /**
  * ArrayAdapter override for GroceryList activity
+ * https://www.caveofprogramming.com/guest-posts/custom-listview-with-imageview-and-textview-in-android.html
  * Created by jbuoni on 10/11/16.
  */
 public class ItemArrayAdapter extends BaseAdapter{

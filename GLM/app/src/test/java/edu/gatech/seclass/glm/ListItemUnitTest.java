@@ -3,8 +3,6 @@ package edu.gatech.seclass.glm;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
 import edu.gatech.seclass.glm.Model.Item;
 import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
