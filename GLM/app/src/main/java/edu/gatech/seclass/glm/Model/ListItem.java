@@ -94,10 +94,10 @@ public class ListItem implements Comparable<ListItem> {
     @Override
     public int compareTo(ListItem item) {
 
-        if (item.getItem().getItemType() < this.getItem().getItemType()) {
+        if (item.getItem().getItemType().getId() < this.getItem().getItemType().getId()) {
             return 1;
         }
-        else if (item.getItem().getItemType() > this.getItem().getItemType()) {
+        else if (item.getItem().getItemType().getId() > this.getItem().getItemType().getId()) {
             return -1;
         }
         else {
@@ -112,7 +112,7 @@ public class ListItem implements Comparable<ListItem> {
      */
     @Override
     public String toString(){
-        return String.format("Name: %1$1s Type: %2$1s Quantity: %3$1s", this.item.getName(), this.item.getItemType(), this.getQuantity());
+        return String.format("Name: %1$1s Type: %2$1s Quantity: %3$1s", this.item.getName(), this.item.getItemType().getName(), this.getQuantity());
     }
 
 }

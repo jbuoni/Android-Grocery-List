@@ -8,6 +8,7 @@ import java.util.List;
 
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 
 import static org.junit.Assert.assertEquals;
@@ -29,9 +30,9 @@ public class GroceryListUnitTest {
     public void setUp() {
         listItems = new ArrayList<ListItem>();
 
-        item1 = new ListItem(1, new Item(1, "Test Item 1", 1), false, 1);
-        item2 = new ListItem(2, new Item(2, "Test Item 2", 3), true, 4);
-        item3 = new ListItem(3, new Item(2, "Test Item 3", 2), true, 5);
+        item1 = new ListItem(1, new Item(1, "Test Item 1", new ItemType(1, "Type 1")), false, 1);
+        item2 = new ListItem(2, new Item(2, "Test Item 2", new ItemType(3, "Type 3")), true, 4);
+        item3 = new ListItem(3, new Item(2, "Test Item 3", new ItemType(2, "Type 2")), true, 5);
 
         listItems.add(item1);
         listItems.add(item2);
@@ -54,7 +55,7 @@ public class GroceryListUnitTest {
 
     @Test
     public void setListItems_isCorrect() throws Exception {
-        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", 1), false, 4);
+        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", new ItemType(1, "Type 1")), false, 4);
         groceryList.addListItem(item4);
 
         assertEquals("List should have 4 items", groceryList.getAllListItems().size(), 4);
@@ -83,7 +84,7 @@ public class GroceryListUnitTest {
 
     @Test
     public void checkListItemById_isCorrect() throws Exception {
-        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", 1), false, 4);
+        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", new ItemType(1, "Type 1")), false, 4);
         groceryList.addListItem(item4);
 
         groceryList.checkListItemById(1);
@@ -95,14 +96,14 @@ public class GroceryListUnitTest {
 
     @Test
     public void sortListByItemType_isCorrect() throws Exception {
-        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", 1), false, 4);
+        ListItem item4 = new ListItem(4, new Item(4, "Test Item 4", new ItemType(1, "Type 1")), false, 4);
         groceryList.addListItem(item4);
         groceryList.sortListByItemType();
 
-        assertEquals("Item 1 type should be 1", groceryList.getAllListItems().get(0).getItem().getItemType(), new Integer(1));
-        assertEquals("Item 4 type should be 1", groceryList.getAllListItems().get(1).getItem().getItemType(), new Integer(1));
-        assertEquals("Item 3 type should be 2", groceryList.getAllListItems().get(2).getItem().getItemType(), new Integer(2));
-        assertEquals("Item 2 type should be 3", groceryList.getAllListItems().get(3).getItem().getItemType(), new Integer(3));
+        assertEquals("Item 1 type should be 1", groceryList.getAllListItems().get(0).getItem().getItemType().getId(), new Integer(1));
+        assertEquals("Item 4 type should be 1", groceryList.getAllListItems().get(1).getItem().getItemType().getId(), new Integer(1));
+        assertEquals("Item 3 type should be 2", groceryList.getAllListItems().get(2).getItem().getItemType().getId(), new Integer(2));
+        assertEquals("Item 2 type should be 3", groceryList.getAllListItems().get(3).getItem().getItemType().getId(), new Integer(3));
     }
 
 

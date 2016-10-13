@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +23,7 @@ public class ListItemUnitTest {
 
     @Before
     public void setUp() {
-        item = new ListItem(1, new Item(1, "Test Item 1", 2), false, 1);
+        item = new ListItem(1, new Item(1, "Test Item 1", new ItemType(2, "Type 2")), false, 1);
     }
 
 
@@ -49,8 +50,8 @@ public class ListItemUnitTest {
 
     @Test
     public void compareTo_isCorrect() throws Exception {
-        ListItem item2 = new ListItem(1, new Item(1, "Test Item 1", 1), false, 1);
-        ListItem item3 = new ListItem(1, new Item(1, "Test Item 1", 3), false, 1);
+        ListItem item2 = new ListItem(1, new Item(1, "Test Item 1", new ItemType(1, "Type 1")), false, 1);
+        ListItem item3 = new ListItem(1, new Item(1, "Test Item 1", new ItemType(3, "Type 3")), false, 1);
 
         assertEquals("Should return 1 when comparing Items with lower Type value", item.compareTo(item2), 1);
         assertEquals("Should return 0 when comparing Items with same Type value", item.compareTo(item), 0);
@@ -59,7 +60,7 @@ public class ListItemUnitTest {
 
     @Test
     public void toString_isCorrect() throws Exception {
-        assertEquals("Validate toString", item.toString(), "Name: Test Item 1 Type: 2 Quantity: 1");
+        assertEquals("Validate toString", item.toString(), "Name: Test Item 1 Type: Type 2 Quantity: 1");
     }
 
 }
