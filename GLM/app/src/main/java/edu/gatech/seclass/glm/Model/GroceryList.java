@@ -2,6 +2,8 @@ package edu.gatech.seclass.glm.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,6 +15,12 @@ public class GroceryList implements Serializable {
     private String name;
     private Integer id;
     private List<ListItem> listItems;
+
+    public GroceryList(String name, Integer id) {
+        this.name = name;
+        this.id = id;
+        this.listItems = null;
+    }
 
     public GroceryList(String name, Integer id, List<ListItem> listItems)
     {
@@ -54,22 +62,35 @@ public class GroceryList implements Serializable {
 
     public void removeListItemById(Integer id)
     {
-        //// TODO: 10/8/16
+        //Use an iterator to ensure safe removal.
+        Iterator<ListItem> i = listItems.iterator();
+        while(i.hasNext()) {
+            ListItem item = i.next();
+            if(item.getId() == id) {
+                i.remove();
+            }
+        }
     }
 
     public void uncheckAllListItems()
     {
-        //// TODO: 10/8/16
+        for (int j = 0; j < listItems.size();j++) {
+            listItems.get(j).setIsChecked(false);
+        }
     }
 
     public void checkListItemById(Integer id)
     {
-        //// TODO: 10/8/16
+        for (ListItem item : listItems) {
+            if(item.getId() == id) {
+                item.setIsChecked(true);
+            }
+        }
     }
 
     public void sortListByItemType()
     {
-        //// TODO: 10/8/16
+        Collections.sort(this.listItems);
     }
 
 }
