@@ -8,9 +8,9 @@ public class Item {
 
     private Integer id;
     private String name;
-    private Integer itemType;
+    private ItemType itemType;
 
-    public Item(Integer id, String name, Integer itemType)
+    public Item(Integer id, String name, ItemType itemType)
     {
         this.id = id;
         this.name = name;
@@ -29,11 +29,11 @@ public class Item {
         this.name = name;
     }
 
-    public Integer getItemType() {
+    public ItemType getItemType() {
         return itemType;
     }
 
-    public void setItemType(Integer itemType) {
+    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
 }

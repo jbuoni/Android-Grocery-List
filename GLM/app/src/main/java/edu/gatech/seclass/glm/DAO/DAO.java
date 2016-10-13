@@ -18,7 +18,6 @@ import edu.gatech.seclass.glm.Model.ListItem;
  * Created by danielbansch on 10/8/16.
  */
 
-//// TODO: 10/8/16
 public class DAO extends SQLiteOpenHelper implements DAOI {
 
     public static final int DATABASE_VERSION = 1;
@@ -40,7 +39,6 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     private static final String SQL_DELETE_ITEMTYPE =
             "DROP TABLE IF EXISTS " + DatabaseContract.ItemTypeEntry.TABLE_NAME;
-
 
     private static final String SQL_CREATE_ITEM =
             "CREATE TABLE " + DatabaseContract.ItemEntry.TABLE_NAME + " (" +
@@ -207,20 +205,36 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor mCursor = db.rawQuery("SELECT * FROM " +
+        Cursor c = db.rawQuery("SELECT * FROM " +
                 DatabaseContract.GroceryListEntry.TABLE_NAME +
-                " JOIN " + DatabaseContract.ListItemEntry.TABLE_NAME + " ON " +
-                DatabaseContract.GroceryListEntry.TABLE_NAME + "." + DatabaseContract.GroceryListEntry._ID +
-                "=" + DatabaseContract.ListItemEntry.TABLE_NAME + "." + DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN +
-                " JOIN " + DatabaseContract.ItemEntry.TABLE_NAME + " ON " +
-                DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
-                "=" + DatabaseContract.ListItemEntry.TABLE_NAME + "." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
-                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
-                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
-                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
-                " WHERE " + DatabaseContract.GroceryListEntry._ID + "=" + String.valueOf(id), null);
+                " as GL LEFT OUTER JOIN " + DatabaseContract.ListItemEntry.TABLE_NAME + " as LI ON " +
+                "GL." + DatabaseContract.GroceryListEntry._ID +
+                "=LI." + DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN +
+                " LEFT OUTER JOIN " + DatabaseContract.ItemEntry.TABLE_NAME + " as I ON " +
+                "I." + DatabaseContract.ItemEntry._ID +
+                "=LI." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
+                " LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " as IT ON " +
+                "IT." + DatabaseContract.ItemTypeEntry._ID +
+                "=I." + DatabaseContract.ItemEntry._ID +
+                " WHERE GL." + DatabaseContract.GroceryListEntry._ID + "=" + String.valueOf(id), null);
 
-        return null;
+        //get the GroceryList
+        GroceryList groceryList = null;
+        if (c.moveToFirst()) {
+
+            long glId = c.getLong(
+                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry._ID)
+            );
+
+            String glName = c.getString(
+                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry.NAME_COLUMN)
+            );
+
+            groceryList = new GroceryList(glName, (int) glId, new ArrayList<ListItem>());
+
+        }
+
+        return groceryList;
     }
 
     @Override
@@ -273,24 +287,213 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         values.put(DatabaseContract.ItemEntry.NAME_COLUMN, itemName);
         values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, itemTypeID);
         long itemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
-        Item item = new Item((int) itemID, itemName, itemTypeID);
+        Item item = new Item((int) itemID, itemName, getItemTypeByID(itemTypeID));
         return item;
     }
 
     @Override
     public List<Item> findItemsLike(String searchString) {
-        return null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM " +
+                DatabaseContract.ItemEntry.TABLE_NAME +
+                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
+                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
+                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
+                " WHERE " + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE %" + searchString + "%", null);
+
+        //put the results in a List of Items
+        List<Item> searchResults = new ArrayList<Item>();
+
+        if (c.moveToFirst()) {
+            do
+            {
+                long itemId = c.getLong(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry._ID)
+                );
+
+                String itemName = c.getString(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry.NAME_COLUMN)
+                );
+
+                long itemTypeId = c.getLong(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
+                );
+
+                String itemTypeName = c.getString(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
+                );
+
+                searchResults.add(new Item((int) itemId, itemName, new ItemType((int) itemTypeId, itemTypeName)));
+
+            } while (c.moveToNext());
+        }
+
+        return searchResults;
+
+
     }
 
     @Override
     public List<Item> getItemsByItemType(ItemType itemType) {
-        return null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //columns selected
+        String[] projection = {
+                DatabaseContract.ItemEntry._ID,
+                DatabaseContract.ItemEntry.NAME_COLUMN
+        };
+
+        //where filter
+        String selection = DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN + " =?";
+        String[] selectionArgs = {String.valueOf(itemType.getId())};
+
+        Cursor c = db.query(
+                DatabaseContract.ItemEntry.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        //put the results in a List of Items
+        List<Item> filterResults = new ArrayList<Item>();
+
+        if (c.moveToFirst()) {
+            do
+            {
+                long itemId = c.getLong(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry._ID)
+                );
+
+                String itemName = c.getString(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry.NAME_COLUMN)
+                );
+
+                filterResults.add(new Item((int) itemId, itemName, itemType));
+
+            } while (c.moveToNext());
+        }
+
+        return filterResults;
+
     }
 
-    private Item getItemByID(Integer id) { return null; }
+    private Item getItemByID(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM " +
+                DatabaseContract.ItemEntry.TABLE_NAME +
+                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
+                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
+                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
+                " WHERE " + DatabaseContract.ItemTypeEntry.TABLE_NAME + "=" + id, null);
+
+        //get the Item
+        Item item = null;
+        if (c.moveToFirst()) {
+
+            long itemId = c.getLong(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemEntry._ID)
+            );
+
+            String itemName = c.getString(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemEntry.NAME_COLUMN)
+            );
+
+            long itemTypeId = c.getLong(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
+            );
+
+            String itemTypeName = c.getString(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
+            );
+
+            item = new Item((int) itemId, itemName, new ItemType((int) itemTypeId, itemTypeName));
+
+        }
+
+        return item;
+
+    }
+
+    private ItemType getItemTypeByID(Integer id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //columns selected
+        String[] projection = {
+                DatabaseContract.ItemTypeEntry._ID,
+                DatabaseContract.ItemTypeEntry.NAME_COLUMN
+        };
+
+        //where filter
+        String selection = DatabaseContract.ItemTypeEntry._ID + " =?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        Cursor c = db.query(
+                DatabaseContract.ItemTypeEntry.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        //get the ItemType
+        ItemType itemType = null;
+        if (c.moveToFirst()) {
+
+            long itemTypeId = c.getLong(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
+            );
+
+            String itemTypeName = c.getString(
+                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
+            );
+
+            itemType = new ItemType((int) itemTypeId, itemTypeName);
+
+        }
+
+        return itemType;
+
+    }
+
     @Override
     public List<ItemType> getAllItemTypes() {
-        return null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT * FROM " + DatabaseContract.ItemTypeEntry.TABLE_NAME, null);
+
+        //put the results in a List of Items
+        List<ItemType> itemTypes = new ArrayList<ItemType>();
+
+        if (c.moveToFirst()) {
+            do
+            {
+                long itemTypeId = c.getLong(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
+                );
+
+                String itemTypeName = c.getString(
+                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
+                );
+
+                itemTypes.add(new ItemType((int) itemTypeId, itemTypeName));
+
+            } while (c.moveToNext());
+        }
+
+        return itemTypes;
+
     }
 
     @Override
