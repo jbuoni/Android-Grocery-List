@@ -1,6 +1,7 @@
 package edu.gatech.seclass.glm.Utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import edu.gatech.seclass.glm.Activity.GroceryListActivity;
 import edu.gatech.seclass.glm.Activity.MainActivity;
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.R;
@@ -91,7 +93,10 @@ public class GroceryListArrayAdapter extends BaseAdapter {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Implement
+                Intent intent = new Intent(context, GroceryListActivity.class);
+                intent.putExtra("GroceryList", groceryLists.get(position));
+
+                context.startActivity(intent);
             }
         });
 

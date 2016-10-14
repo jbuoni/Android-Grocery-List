@@ -9,6 +9,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Controller.ListMgmtController;
+import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.Utils.ItemArrayAdapter;
@@ -28,8 +29,9 @@ public class GroceryListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Load grocery lists
         groceryListController = new ListMgmtController(this.getApplicationContext());
-
+        groceryListController.updateCurrentList(((GroceryList)getIntent().getSerializableExtra("GroceryList")).getId());
         listItems = groceryListController.getCurrentListItems();
 
         //Auto update the list view
