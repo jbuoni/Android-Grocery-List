@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <Button
+        android:text="Add List"
+        android:layout_width="156dp"
+        android:layout_height="58dp"
+        android:id="@+id/button7"
+        tools:layout_editor_absoluteY="447dp"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:text="Delete Selected List"
+        android:layout_width="180dp"
+        android:layout_height="57dp"
+        android:id="@+id/button6"
+        tools:layout_editor_absoluteY="448dp"
+        tools:layout_editor_absoluteX="188dp" />
+
+    <CheckBox
+        android:text="Weekly Groceries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="126dp"
+        tools:layout_editor_absoluteX="60dp"
+        android:id="@+id/checkBox6" />
+
+    <CheckBox
+        android:text="Lunch Foods"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="184dp"
+        tools:layout_editor_absoluteX="60dp"
+        android:id="@+id/checkBox7" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="246dp"
+        tools:layout_editor_absoluteX="60dp"
+        android:id="@+id/checkBox8"
+        android:text="Party List" />
+
+    <TextView
+        android:text="My Lists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="26dp"
+        tools:layout_editor_absoluteX="51dp"
+        android:id="@+id/textView2" />
+
+    <Button
+        android:text="View/Edit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="109dp"
+        tools:layout_editor_absoluteX="229dp"
+        android:id="@+id/buttonViewList1" />
+
+    <Button
+        android:text="View/Edit"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="168dp"
+        tools:layout_editor_absoluteX="229dp"
+        android:id="@+id/buttonViewList2" />
+
+    <Button
+        android:text="View/Edit"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        tools:layout_editor_absoluteY="228dp"
+        tools:layout_editor_absoluteX="229dp"
+        android:id="@+id/buttonViewList3" />
+
+</android.support.constraint.ConstraintLayout>
