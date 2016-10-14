@@ -173,4 +173,37 @@ public class ExampleInstrumentedTest {
 
     }
 
+    @Test
+    /**
+     * Test findItemsLike by searching for "12 Pack" and check
+     * that the three Items with names starting with 12 Pack are returned.
+     */
+    public void testFindItemsLike() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        List<Item> testList = daoi.findItemsLike("12 Pack");
+        List<String> beerNames = new ArrayList<String>();
+        beerNames.add("12 Pack of Coors");
+        beerNames.add("12 Pack of Budweiser");
+        beerNames.add("12 Pack of Bud Light");
+
+        int foundCount = 0;
+        for (Item i:testList)
+        {
+            String itemName = i.getName();
+            for (String beerName:beerNames)
+            {
+                if (beerName.equals(itemName))
+                {
+                    foundCount++;
+                }
+            }
+        }
+
+        assertEquals(beerNames.size(), foundCount);
+
+    }
+
+
 }

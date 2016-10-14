@@ -334,7 +334,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 " AS I JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
                 " IT." + DatabaseContract.ItemTypeEntry._ID +
                 "= I." + DatabaseContract.ItemEntry._ID +
-                " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE %" + searchString + "%", null);
+                " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE \"%" + searchString + "%\"", null);
 
         //put the results in a List of Items
         List<Item> searchResults = new ArrayList<Item>();
