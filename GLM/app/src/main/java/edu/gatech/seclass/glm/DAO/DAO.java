@@ -63,7 +63,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                     ") REFERENCES " + DatabaseContract.ItemEntry.TABLE_NAME + "(" +
                     DatabaseContract.ItemTypeEntry._ID + ") " +
                     "FOREIGN KEY(" + DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN +
-                            ") REFERENCES " + DatabaseContract.GroceryListEntry.TABLE_NAME + "(" +
+                    ") REFERENCES " + DatabaseContract.GroceryListEntry.TABLE_NAME + "(" +
                     DatabaseContract.ItemTypeEntry._ID + "))";
 
     private static final String SQL_DELETE_LISTITEM =
@@ -205,7 +205,15 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " +
+        Cursor c = db.rawQuery("SELECT GL." + DatabaseContract.GroceryListEntry.NAME_COLUMN +
+                ", LI." + DatabaseContract.ListItemEntry._ID +
+                ", LI." + DatabaseContract.ListItemEntry.QUANTITY_COLUMN +
+                ", LI." + DatabaseContract.ListItemEntry.IS_CHECKED_COLUMN +
+                ", I." + DatabaseContract.ItemEntry._ID +
+                ", I." + DatabaseContract.ItemEntry.NAME_COLUMN +
+                ", IT." + DatabaseContract.ItemTypeEntry._ID +
+                ", IT." + DatabaseContract.ItemTypeEntry.NAME_COLUMN +
+                " FROM " +
                 DatabaseContract.GroceryListEntry.TABLE_NAME +
                 " as GL LEFT OUTER JOIN " + DatabaseContract.ListItemEntry.TABLE_NAME + " as LI ON " +
                 "GL." + DatabaseContract.GroceryListEntry._ID +
@@ -220,20 +228,35 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
         //get the GroceryList
         GroceryList groceryList = null;
+        String glName = null;
+        List<ListItem> liList = new ArrayList<ListItem>();
+
         if (c.moveToFirst()) {
 
-            long glId = c.getLong(
-                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry._ID)
-            );
+            glName = c.getString(0);
+            do
+            {
+                try {
+                    long liID = c.getLong(1);
+                    long liQty = c.getLong(2);
+                    long liIsChecked = c.getLong(3);
+                    long itemId = c.getLong(4);
+                    String itemName = c.getString(5);
+                    long itemTypeId = c.getLong(6);
+                    String itemTypeName = c.getString(7);
+                    ItemType it = new ItemType((int) itemTypeId, itemTypeName);
+                    Item i = new Item((int) itemId, itemName, it);
+                    ListItem li = new ListItem((int) liID, i, (liIsChecked == 1), (int) liQty);
+                    liList.add(li);
+                }
+                catch (Exception e)
+                {
 
-            String glName = c.getString(
-                    c.getColumnIndexOrThrow("GL." + DatabaseContract.GroceryListEntry.NAME_COLUMN)
-            );
-
-            groceryList = new GroceryList(glName, (int) glId, new ArrayList<ListItem>());
-
+                }
+            } while (c.moveToNext());
         }
 
+        groceryList = new GroceryList(glName, id, liList);
         return groceryList;
     }
 

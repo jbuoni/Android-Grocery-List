@@ -94,15 +94,7 @@ public class ListItem implements Comparable<ListItem> {
     @Override
     public int compareTo(ListItem item) {
 
-        if (item.getItem().getItemType().getId() < this.getItem().getItemType().getId()) {
-            return 1;
-        }
-        else if (item.getItem().getItemType().getId() > this.getItem().getItemType().getId()) {
-            return -1;
-        }
-        else {
-            return 0;
-        }
+        return this.getItem().getItemType().getName().compareTo(item.getItem().getItemType().getName());
 
     }
 
