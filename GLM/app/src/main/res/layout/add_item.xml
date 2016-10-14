@@ -7,23 +7,23 @@
         android:text="Item Type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/atxtType" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner" />
+        android:id="@+id/aspnType" />
 
     <TextView
         android:text="Item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/atxtItem" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2" />
+        android:id="@+id/aspnItem" />
 
     <TextView
         android:text="Quantity"
@@ -36,11 +36,12 @@
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText" />
+        android:id="@+id/aQuant" />
 
     <Button
         android:text="Add Item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button" />
+        android:id="@+id/addButton"
+        android:onClick="buttonOnClick" />
 </LinearLayout>
