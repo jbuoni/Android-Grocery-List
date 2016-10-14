@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="edu.gatech.seclass.glm.Activity.MainActivity">
+    tools:context="edu.gatech.seclass.glm.Activity.MainActivity"
+    android:weightSum="1">
 
-    <android.support.design.widget.AppBarLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="440dp"
+        android:id="@+id/groceryListContainer"
+        android:layout_weight="1.25" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:weightSum="1">
 
-    </android.support.design.widget.AppBarLayout>
+        <Button
+            android:text="Add List"
+            android:layout_width="156dp"
+            android:layout_height="58dp"
+            android:id="@+id/addList"
+            android:layout_weight="0.90" />
 
-    <include layout="@layout/content_main" />
+        <Button
+            android:text="Delete Selected List"
+            android:layout_width="180dp"
+            android:layout_height="57dp"
+            android:id="@+id/deleteList" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
-</android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+</LinearLayout>

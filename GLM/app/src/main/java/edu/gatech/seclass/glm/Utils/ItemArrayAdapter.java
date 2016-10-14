@@ -1,7 +1,6 @@
 package edu.gatech.seclass.glm.Utils;
 
 import android.content.Context;
-import android.support.v4.content.res.TypedArrayUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Activity.GroceryListActivity;
-import edu.gatech.seclass.glm.Activity.MainActivity;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.R;
 
@@ -78,7 +76,7 @@ public class ItemArrayAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View rowView;
-        rowView = inflater.inflate(R.layout.grocery_list_item, null);
+        rowView = inflater.inflate(R.layout.list_item_listview, null);
 
         CheckBox checkBox = (CheckBox)rowView.findViewById(R.id.itemCheckBox);
         final EditText itemName = (EditText)rowView.findViewById(R.id.itemName);
