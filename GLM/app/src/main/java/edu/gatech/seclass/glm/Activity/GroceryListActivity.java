@@ -53,6 +53,7 @@ public class GroceryListActivity extends AppCompatActivity {
 
     public void uncheckAllItems(View view){
         groceryListController.uncheckAllListItems();
+        generateListItemViews();
     }
 
     private void generateListItemViews() {
