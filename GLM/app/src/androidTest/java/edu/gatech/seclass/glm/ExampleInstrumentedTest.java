@@ -1,10 +1,8 @@
 package edu.gatech.seclass.glm;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.mock.MockContext;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import edu.gatech.seclass.glm.DAO.DAO;
 import edu.gatech.seclass.glm.DAO.DAOI;
-import edu.gatech.seclass.glm.DAO.DatabaseContract;
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.Item;
 import edu.gatech.seclass.glm.Model.ItemType;
@@ -33,7 +30,8 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ExampleInstrumentedTest {
 
-    private static int testListId = 0;
+    private static int testListId1 = 0;
+    private static int testListId2 = 0;
 
     @Test
     public void useAppContext() throws Exception {
@@ -50,11 +48,20 @@ public class ExampleInstrumentedTest {
     public void test1CreateGroceryList() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         DAOI daoi = new DAO(appContext);
-        String listName = "Test List";
-        GroceryList testList = daoi.createList(listName);
-        testListId = testList.getId();
-        GroceryList testListFromID = daoi.loadList(testListId);
-        assertEquals(listName, testListFromID.getName());
+
+        String listName1 = "Test List1";
+        GroceryList testList1 = daoi.createList(listName1);
+        testListId1 = testList1.getId();
+        GroceryList testListFromID1 = daoi.loadList(testListId1);
+        boolean test1Passes = (listName1.equals(testListFromID1.getName()));
+
+        String listName2 = "Test List2";
+        GroceryList testList2 = daoi.createList(listName2);
+        testListId2 = testList2.getId();
+        GroceryList testListFromID2 = daoi.loadList(testListId2);
+        boolean test2Passes = (listName2.equals(testListFromID2.getName()));
+
+        assertTrue(test1Passes && test2Passes);
     }
 
     @Test
@@ -66,14 +73,17 @@ public class ExampleInstrumentedTest {
     public void test2AddItemToList() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         DAOI daoi = new DAO(appContext);
+
+        //Test list 1
         List<ItemType> testItemTypeList = daoi.getAllItemTypes();
+
         List<Item> testItemList1 = daoi.getItemsByItemType(testItemTypeList.get(0));
         Item testItem1 = testItemList1.get(0);
         List<Item> testItemList2 = daoi.getItemsByItemType(testItemTypeList.get(1));
         Item testItem2 = testItemList2.get(0);
-        daoi.addItemToList(testListId, testItem1.getId(), 3);
-        daoi.addItemToList(testListId, testItem2.getId(), 4);
-        GroceryList testListFromID = daoi.loadList(testListId);
+        daoi.addItemToList(testListId1, testItem1.getId(), 3);
+        daoi.addItemToList(testListId1, testItem2.getId(), 4);
+        GroceryList testListFromID = daoi.loadList(testListId1);
         List<ListItem> listItems = testListFromID.getAllListItems();
         ListItem dbListItem1 = listItems.get(0);
         ListItem dbListItem2 = listItems.get(1);
@@ -81,12 +91,33 @@ public class ExampleInstrumentedTest {
         {
             assertTrue(dbListItem1.getQuantity() == 3 && dbListItem2.getItem().getId() == testItem2.getId()
                     && dbListItem2.getQuantity() == 4 && !dbListItem1.getIsChecked() && !dbListItem2.getIsChecked());
-            return;
         }
         else if (dbListItem2.getItem().getId() == testItem1.getId())
         {
             assertTrue(dbListItem1.getQuantity() == 4 && dbListItem1.getItem().getId() == testItem2.getId()
                     && dbListItem2.getQuantity() == 3 && !dbListItem1.getIsChecked() && !dbListItem2.getIsChecked());
+        }
+
+        List<Item> testItemList3 = daoi.getItemsByItemType(testItemTypeList.get(1));
+        Item testItem3 = testItemList3.get(0);
+        List<Item> testItemList4 = daoi.getItemsByItemType(testItemTypeList.get(2));
+        Item testItem4 = testItemList4.get(0);
+        daoi.addItemToList(testListId2, testItem3.getId(), 3);
+        daoi.addItemToList(testListId2, testItem4.getId(), 4);
+        GroceryList testListFromID2 = daoi.loadList(testListId2);
+        List<ListItem> listItems2 = testListFromID2.getAllListItems();
+        ListItem dbListItem3 = listItems2.get(0);
+        ListItem dbListItem4 = listItems2.get(1);
+        if (dbListItem3.getItem().getId() == testItem3.getId())
+        {
+            assertTrue(dbListItem3.getQuantity() == 3 && dbListItem4.getItem().getId() == testItem4.getId()
+                    && dbListItem4.getQuantity() == 4 && !dbListItem3.getIsChecked() && !dbListItem4.getIsChecked());
+            return;
+        }
+        else if (dbListItem4.getItem().getId() == testItem3.getId())
+        {
+            assertTrue(dbListItem3.getQuantity() == 4 && dbListItem3.getItem().getId() == testItem4.getId()
+                    && dbListItem4.getQuantity() == 3 && !dbListItem3.getIsChecked() && !dbListItem4.getIsChecked());
             return;
         }
 
@@ -95,14 +126,46 @@ public class ExampleInstrumentedTest {
 
     @Test
     /**
-     * Test that dao.deleteList deletes the list from the database.
+     * Test that DAO.getAllLists works by calling it and making sure
+     * all the lists in the original database are there and have the
+     * expected data.
      */
-    public void test3DeleteList() {
+    public void test3GetAllLists() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         DAOI daoi = new DAO(appContext);
-        daoi.deleteList(testListId);
-        GroceryList testListFromID = daoi.loadList(testListId);
+        List<GroceryList> groceryLists = daoi.getAllLists();
+        GroceryList gl1 = null;
+        GroceryList gl2 = null;
+        for (GroceryList gl:groceryLists)
+        {
+            if (gl.getId() == testListId1)
+            {
+                gl1 = gl;
+            }
+            else if (gl.getId() == testListId2)
+            {
+                gl2 = gl;
+            }
+        }
+        assertTrue(gl1.getName().equals("Test List1") && gl2.getName().equals("Test List2")
+                && gl1.getAllListItems().size() == 2 && gl2.getAllListItems().size() == 2);
+    }
+
+    @Test
+    /**
+     * Test that dao.deleteList deletes the list from the database.
+     */
+    public void test4DeleteList() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        daoi.deleteList(testListId1);
+        GroceryList testListFromID = daoi.loadList(testListId1);
         assertNull(testListFromID);
+        daoi.deleteList(testListId2);
+        GroceryList testListFromID2 = daoi.loadList(testListId2);
+        assertNull(testListFromID2);
+
     }
 
     @Test
@@ -231,15 +294,5 @@ public class ExampleInstrumentedTest {
         assertTrue(itemFound);
 
     }
-
-
-    //@Test
-    /**
-     * Test that DAO.getAllLists works by calling it and making sure
-     * all the lists in the original database are there and have the
-     * expected data.
-     */
-
-
 
 }

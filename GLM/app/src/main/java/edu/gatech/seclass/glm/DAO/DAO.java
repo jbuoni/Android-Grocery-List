@@ -588,7 +588,8 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
                 }
             } while (c.moveToNext());
-
+            //add the final grocery list
+            groceryLists.add(new GroceryList(glName, (int) glID, liList));
         }
         return groceryLists;
     }
