@@ -93,17 +93,17 @@ public class GroceryListArrayAdapter extends BaseAdapter {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, GroceryListActivity.class);
-                intent.putExtra("GroceryList", groceryLists.get(position));
 
-                context.startActivity(intent);
             }
         });
 
         viewListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Implement
+                Intent intent = new Intent(context, GroceryListActivity.class);
+                intent.putExtra("GroceryList", groceryLists.get(position));
+
+                context.startActivity(intent);
             }
         });
 

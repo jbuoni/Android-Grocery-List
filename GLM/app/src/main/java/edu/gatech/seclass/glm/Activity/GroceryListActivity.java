@@ -28,6 +28,7 @@ public class GroceryListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.grocery_list);
 
         //Load grocery lists
         groceryListController = new ListMgmtController(this.getApplicationContext());

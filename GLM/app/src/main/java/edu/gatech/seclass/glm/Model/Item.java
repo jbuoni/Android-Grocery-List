@@ -1,10 +1,12 @@
 package edu.gatech.seclass.glm.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by danielbansch on 10/8/16.
  */
 
-public class Item {
+public class Item  implements Serializable {
 
     private Integer id;
     private String name;

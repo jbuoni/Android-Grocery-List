@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         listController = new ListController(this.getApplicationContext());
         groceryLists = listController.getAllLists();
@@ -49,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Enter text below");
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int buttonVal) {
-                if(!groceryListEditText.getText().toString().isEmpty()) {
+                if(groceryListEditText.getText().toString().isEmpty()) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please enter a grocery list name", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
                     listController.createList(groceryListEditText.getText().toString());
+                    groceryListArrayAdapter.notifyDataSetChanged();
                     dialog.dismiss();
                 }
             }

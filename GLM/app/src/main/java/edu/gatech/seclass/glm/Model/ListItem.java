@@ -1,5 +1,7 @@
 package edu.gatech.seclass.glm.Model;
 
+import java.io.Serializable;
+
 import edu.gatech.seclass.glm.Model.Item;
 
 /**
@@ -7,7 +9,7 @@ import edu.gatech.seclass.glm.Model.Item;
  * Created by danielbansch on 10/8/16.
  */
 
-public class ListItem implements Comparable<ListItem> {
+public class ListItem implements Comparable<ListItem>, Serializable {
 
     private Integer id;
     private Item item;
