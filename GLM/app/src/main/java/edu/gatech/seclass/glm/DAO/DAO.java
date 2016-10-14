@@ -238,6 +238,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
             {
                 try {
                     long liID = c.getLong(1);
+                    if (liID == 0)
+                    {
+                        break;
+                    }
                     long liQty = c.getLong(2);
                     long liIsChecked = c.getLong(3);
                     long itemId = c.getLong(4);
@@ -254,9 +258,9 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
                 }
             } while (c.moveToNext());
-        }
 
-        groceryList = new GroceryList(glName, id, liList);
+            groceryList = new GroceryList(glName, id, liList);
+        }
         return groceryList;
     }
 
@@ -273,6 +277,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         values.put(DatabaseContract.ListItemEntry.IS_CHECKED_COLUMN, 0);
         long listItemID = db.insert(DatabaseContract.ListItemEntry.TABLE_NAME, null, values);
         return new ListItem((int) listItemID, getItemByID(itemID), false, quantity);
+
     }
 
     @Override
@@ -319,12 +324,17 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM " +
+        Cursor c = db.rawQuery("SELECT" +
+                " I." + DatabaseContract.ItemEntry._ID +
+                ", I." + DatabaseContract.ItemEntry.NAME_COLUMN +
+                ", IT." + DatabaseContract.ItemTypeEntry._ID +
+                ", IT." + DatabaseContract.ItemTypeEntry.NAME_COLUMN +
+                " FROM " +
                 DatabaseContract.ItemEntry.TABLE_NAME +
-                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
-                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
-                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
-                " WHERE " + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE %" + searchString + "%", null);
+                " AS I JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
+                " IT." + DatabaseContract.ItemTypeEntry._ID +
+                "= I." + DatabaseContract.ItemEntry._ID +
+                " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE \"%" + searchString + "%\"", null);
 
         //put the results in a List of Items
         List<Item> searchResults = new ArrayList<Item>();
@@ -332,21 +342,13 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         if (c.moveToFirst()) {
             do
             {
-                long itemId = c.getLong(
-                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry._ID)
-                );
+                long itemId = c.getLong(0);
 
-                String itemName = c.getString(
-                        c.getColumnIndexOrThrow(DatabaseContract.ItemEntry.NAME_COLUMN)
-                );
+                String itemName = c.getString(1);
 
-                long itemTypeId = c.getLong(
-                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
-                );
+                long itemTypeId = c.getLong(2);
 
-                String itemTypeName = c.getString(
-                        c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
-                );
+                String itemTypeName = c.getString(3);
 
                 searchResults.add(new Item((int) itemId, itemName, new ItemType((int) itemTypeId, itemTypeName)));
 
@@ -354,7 +356,6 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         }
 
         return searchResults;
-
 
     }
 
@@ -410,32 +411,29 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT * FROM " +
+        Cursor c = db.rawQuery("SELECT" +
+                " I." + DatabaseContract.ItemEntry._ID +
+                ", I." + DatabaseContract.ItemEntry.NAME_COLUMN +
+                ", IT." + DatabaseContract.ItemTypeEntry._ID +
+                ", IT." + DatabaseContract.ItemTypeEntry.NAME_COLUMN +
+                " FROM " +
                 DatabaseContract.ItemEntry.TABLE_NAME +
-                " JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " ON " +
-                DatabaseContract.ItemTypeEntry.TABLE_NAME + "." + DatabaseContract.ItemTypeEntry._ID +
-                "=" + DatabaseContract.ItemEntry.TABLE_NAME + "." + DatabaseContract.ItemEntry._ID +
-                " WHERE " + DatabaseContract.ItemTypeEntry.TABLE_NAME + "=" + id, null);
+                " AS I JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
+                " IT." + DatabaseContract.ItemTypeEntry._ID +
+                "= I." + DatabaseContract.ItemEntry._ID +
+                " WHERE I." + DatabaseContract.ItemEntry._ID + "=" + id, null);
 
         //get the Item
         Item item = null;
         if (c.moveToFirst()) {
 
-            long itemId = c.getLong(
-                    c.getColumnIndexOrThrow(DatabaseContract.ItemEntry._ID)
-            );
+            long itemId = c.getLong(0);
 
-            String itemName = c.getString(
-                    c.getColumnIndexOrThrow(DatabaseContract.ItemEntry.NAME_COLUMN)
-            );
+            String itemName = c.getString(1);
 
-            long itemTypeId = c.getLong(
-                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry._ID)
-            );
+            long itemTypeId = c.getLong(2);
 
-            String itemTypeName = c.getString(
-                    c.getColumnIndexOrThrow(DatabaseContract.ItemTypeEntry.NAME_COLUMN)
-            );
+            String itemTypeName = c.getString(3);
 
             item = new Item((int) itemId, itemName, new ItemType((int) itemTypeId, itemTypeName));
 
@@ -521,6 +519,77 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     @Override
     public List<GroceryList> getAllLists() {
-        return null;
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT GL." + DatabaseContract.GroceryListEntry.NAME_COLUMN +
+                ", LI." + DatabaseContract.ListItemEntry._ID +
+                ", LI." + DatabaseContract.ListItemEntry.QUANTITY_COLUMN +
+                ", LI." + DatabaseContract.ListItemEntry.IS_CHECKED_COLUMN +
+                ", I." + DatabaseContract.ItemEntry._ID +
+                ", I." + DatabaseContract.ItemEntry.NAME_COLUMN +
+                ", IT." + DatabaseContract.ItemTypeEntry._ID +
+                ", IT." + DatabaseContract.ItemTypeEntry.NAME_COLUMN +
+                ", GL." + DatabaseContract.ItemTypeEntry._ID +
+                " FROM " +
+                DatabaseContract.GroceryListEntry.TABLE_NAME +
+                " as GL LEFT OUTER JOIN " + DatabaseContract.ListItemEntry.TABLE_NAME + " as LI ON " +
+                "GL." + DatabaseContract.GroceryListEntry._ID +
+                "=LI." + DatabaseContract.ListItemEntry.GROCERY_LIST_COLUMN +
+                " LEFT OUTER JOIN " + DatabaseContract.ItemEntry.TABLE_NAME + " as I ON " +
+                "I." + DatabaseContract.ItemEntry._ID +
+                "=LI." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
+                " LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " as IT ON " +
+                "IT." + DatabaseContract.ItemTypeEntry._ID +
+                "=I." + DatabaseContract.ItemEntry._ID + " ORDER BY GL." +
+                DatabaseContract.ItemTypeEntry._ID, null);
+
+        //get the GroceryList
+        List<GroceryList> groceryLists = new ArrayList<GroceryList>();
+        String glName = null;
+        long glID = 0;
+        List<ListItem> liList = new ArrayList<ListItem>();
+
+        if (c.moveToFirst()) {
+
+            glID = c.getLong(8);
+            glName = c.getString(0);
+            do
+            {
+                //if this is a new GroceryList, add the old GroceryList and start a new one
+                if (glID != c.getLong(8))
+                {
+                    groceryLists.add(new GroceryList(glName, (int) glID, liList));
+                    liList = new ArrayList<ListItem>();
+                }
+
+                glID = c.getLong(8);
+                glName = c.getString(0);
+
+                try {
+                    long liID = c.getLong(1);
+                    if (liID == 0)
+                    {
+                        continue;
+                    }
+                    long liQty = c.getLong(2);
+                    long liIsChecked = c.getLong(3);
+                    long itemId = c.getLong(4);
+                    String itemName = c.getString(5);
+                    long itemTypeId = c.getLong(6);
+                    String itemTypeName = c.getString(7);
+                    ItemType it = new ItemType((int) itemTypeId, itemTypeName);
+                    Item i = new Item((int) itemId, itemName, it);
+                    ListItem li = new ListItem((int) liID, i, (liIsChecked == 1), (int) liQty);
+                    liList.add(li);
+                }
+                catch (Exception e)
+                {
+
+                }
+            } while (c.moveToNext());
+
+        }
+        return groceryLists;
     }
 }
