@@ -206,4 +206,40 @@ public class ExampleInstrumentedTest {
     }
 
 
+    @Test
+    /**
+     * Test that creating a new item stores it in the database.
+     */
+    public void testDeleteItem() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        String itemName = "Test Item " + System.currentTimeMillis();
+        List<ItemType> testItemTypeList = daoi.getAllItemTypes();
+        Item item = daoi.createNewItem(itemName, testItemTypeList.get(0).getId());
+        List<Item> itemsByType = daoi.getItemsByItemType(testItemTypeList.get(0));
+
+        boolean itemFound = false;
+        for (Item i:itemsByType)
+        {
+            if (i.getName().equals(itemName))
+            {
+                itemFound = true;
+            }
+
+        }
+        assertTrue(itemFound);
+
+    }
+
+
+    //@Test
+    /**
+     * Test that DAO.getAllLists works by calling it and making sure
+     * all the lists in the original database are there and have the
+     * expected data.
+     */
+
+
+
 }
