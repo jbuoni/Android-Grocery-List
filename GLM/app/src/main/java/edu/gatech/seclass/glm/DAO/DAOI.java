@@ -16,8 +16,9 @@ public interface DAOI {
     /**
      * Update a GroceryList's name in the database.
      * @param groceryList: The grocery list to be updated.
+     * @param name: Name of grocery list
      */
-    void updateListName(GroceryList groceryList);
+    void updateListName(GroceryList groceryList, String name);
 
     /**
      * Insert a new GroceryList into the database.

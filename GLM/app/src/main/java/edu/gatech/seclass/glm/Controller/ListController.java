@@ -19,7 +19,8 @@ public class ListController {
         dao = new DAO(context);
     }
 
-    public void createList(String name) {dao.createList(name);
+    public void createList(String name) {
+        dao.createList(name);
     }
 
     public List<GroceryList> getAllLists() {
@@ -27,6 +28,10 @@ public class ListController {
     }
 
     public void deleteList (Integer id) {dao.deleteList(id);}
+
+    public void updateListName(GroceryList groceryList, String name) {
+        dao.updateListName(groceryList, name);
+    }
 
 
 }

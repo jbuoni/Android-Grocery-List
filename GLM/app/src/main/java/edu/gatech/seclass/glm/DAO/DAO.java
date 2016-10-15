@@ -172,12 +172,12 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
     }
 
     @Override
-    public void updateListName(GroceryList groceryList) {
+    public void updateListName(GroceryList groceryList, String name) {
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         // Set the value and where clause
         ContentValues values = new ContentValues();
-        values.put(DatabaseContract.GroceryListEntry.NAME_COLUMN, groceryList.getName());
+        values.put(DatabaseContract.GroceryListEntry.NAME_COLUMN, name);
         String selection = DatabaseContract.GroceryListEntry._ID + " = ?";
         String[] selectionArgs = {String.valueOf(groceryList.getId())};
         //update the database

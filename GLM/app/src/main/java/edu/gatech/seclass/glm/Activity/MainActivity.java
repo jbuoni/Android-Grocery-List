@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         listController = new ListController(this.getApplicationContext());
         groceryLists = listController.getAllLists();
 
-        groceryListArrayAdapter = new GroceryListArrayAdapter(this, groceryLists);
+        groceryListArrayAdapter = new GroceryListArrayAdapter(this, groceryLists, listController);
 
         ListView groceryListView = (ListView) findViewById(R.id.groceryListContainer);
         groceryListView.setAdapter(groceryListArrayAdapter);
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText groceryListEditText = (EditText) dialogView.findViewById(R.id.groceryListName);
 
-        dialogBuilder.setTitle("Custom dialog");
-        dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setTitle("Create Grocery List");
+        dialogBuilder.setMessage("Enter grocery list name below");
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int buttonVal) {
                 if(groceryListEditText.getText().toString().isEmpty()) {
