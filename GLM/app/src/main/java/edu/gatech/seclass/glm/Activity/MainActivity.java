@@ -16,12 +16,15 @@ import edu.gatech.seclass.glm.Controller.ListController;
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.Utils.GroceryListArrayAdapter;
+import edu.gatech.seclass.glm.Controller.ListController;
+import android.text.TextUtils;
 
 public class MainActivity extends AppCompatActivity {
 
     private GroceryListArrayAdapter groceryListArrayAdapter;
     private ListController listController;
     private List<GroceryList> groceryLists;
+    private int listCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     listController.createList(groceryListEditText.getText().toString());
                     groceryListArrayAdapter.notifyDataSetChanged();
                     dialog.dismiss();
+                    listCount++;
                 }
             }
         });
@@ -70,6 +74,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteSelectedLists(View view) {
-        //TODO implement
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.grocery_list_listview, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText groceryListEditText = (EditText) dialogView.findViewById(R.id.groceryListName);
+        final int numVal = Integer.parseInt(groceryListEditText.getText().toString());
+        final boolean digitsOnly = TextUtils.isDigitsOnly(groceryListEditText.getText().toString());
+
+        dialogBuilder.setTitle("Delete Grocery List(s):");
+        dialogBuilder.setMessage("Select a grocery list for removal");
+
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int buttonVal) {
+                if(groceryListEditText.getText().toString().isEmpty() || digitsOnly == false || numVal > listCount) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid entry. Please try again.", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    listController.deleteList(numVal);
+                    groceryListArrayAdapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            }
+        });
     }
 }
