@@ -172,7 +172,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
     }
 
     @Override
-    public void updateList(GroceryList groceryList) {
+    public void updateListName(GroceryList groceryList) {
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
         // Set the value and where clause
@@ -592,5 +592,42 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
             groceryLists.add(new GroceryList(glName, (int) glID, liList));
         }
         return groceryLists;
+    }
+
+    @Override
+    public void toggleListItemIsChecked(Integer listItemID, boolean checked) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Set the value and where clause
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.ListItemEntry.IS_CHECKED_COLUMN, (checked ? 1 : 0));
+        String selection = DatabaseContract.ListItemEntry._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(listItemID)};
+        //update the database
+        db.update(
+                DatabaseContract.ListItemEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+    }
+
+    @Override
+    public void deleteItemFromList(Integer listItemID) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Delete the ListItem from the GroceryList
+        // Set the value and where clause
+        ContentValues values = new ContentValues();
+        String selection = DatabaseContract.ListItemEntry._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(listItemID)};
+        //delete the row from the database
+        db.delete(
+                DatabaseContract.ListItemEntry.TABLE_NAME,
+                selection,
+                selectionArgs);
+
     }
 }

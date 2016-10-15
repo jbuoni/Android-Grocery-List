@@ -12,7 +12,7 @@ import edu.gatech.seclass.glm.Model.ListItem;
  */
 
 public interface DAOI {
-    public void updateList(GroceryList groceryList);
+    public void updateListName(GroceryList groceryList);
     public GroceryList createList(String name);
     public GroceryList loadList(Integer id);
     public ListItem addItemToList(Integer groceryListID, Integer itemID, Integer quantity);
@@ -22,4 +22,6 @@ public interface DAOI {
     public List<Item> getItemsByItemType(ItemType itemType);
     public List<ItemType> getAllItemTypes();
     public List<GroceryList> getAllLists();
+    public void toggleListItemIsChecked(Integer listItemID, boolean checked);
+    public void deleteItemFromList(Integer listItemID);
 }

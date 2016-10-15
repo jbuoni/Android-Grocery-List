@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ExampleInstrumentedTest {
+public class InstrumentedTest {
 
     private static int testListId1 = 0;
     private static int testListId2 = 0;
@@ -153,9 +153,80 @@ public class ExampleInstrumentedTest {
 
     @Test
     /**
+     * Test that the updateListName function works
+     */
+    public void test4TestUpdateListName() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        GroceryList testListFromID1 = daoi.loadList(testListId1);
+        String newListName = "Test List1 Updated";
+        testListFromID1.setName(newListName);
+        daoi.updateListName(testListFromID1);
+        testListFromID1 = daoi.loadList(testListId1);
+        assertEquals(newListName, testListFromID1.getName());
+    }
+
+    @Test
+    /**
+     * Test that the deleteItemFromList function works.
+     */
+    public void test5TestDeleteItemFromList() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        GroceryList testListFromID1 = daoi.loadList(testListId1);
+        Integer listToDeleteId = testListFromID1.getAllListItems().get(0).getId();
+        daoi.deleteItemFromList(listToDeleteId);
+        testListFromID1 = daoi.loadList(testListId1);
+        List<ListItem> listItems = testListFromID1.getAllListItems();
+        boolean listContainsId = false;
+        for (ListItem li:listItems)
+        {
+            if (li.getId() == listToDeleteId)
+            {
+                listContainsId = true;
+            }
+        }
+
+        assertFalse(listContainsId);
+
+    }
+
+    @Test
+    /**
+     * Test that the  function works.
+     */
+    public void test6TestToggleListItemIsChecked() {
+
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        DAOI daoi = new DAO(appContext);
+        GroceryList testListFromID1 = daoi.loadList(testListId1);
+        List<ListItem> listItems = testListFromID1.getAllListItems();
+        ListItem toggleLI = listItems.get(0);
+        Integer liId = toggleLI.getId();
+        daoi.toggleListItemIsChecked(liId, true);
+        testListFromID1 = daoi.loadList(testListId1);
+        listItems = testListFromID1.getAllListItems();
+        for (ListItem li:listItems)
+        {
+            if (li.getId() == liId)
+            {
+                toggleLI = li;
+                assertTrue(toggleLI.getIsChecked());
+                return;
+            }
+        }
+
+    }
+
+
+
+    @Test
+    /**
      * Test that dao.deleteList deletes the list from the database.
      */
-    public void test4DeleteList() {
+    public void test7DeleteList() {
 
         Context appContext = InstrumentationRegistry.getTargetContext();
         DAOI daoi = new DAO(appContext);
