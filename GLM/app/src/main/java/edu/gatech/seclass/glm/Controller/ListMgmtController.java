@@ -37,27 +37,30 @@ public class ListMgmtController {
 
     public void uncheckAllListItems(){
         currentList.uncheckAllListItems();
-        dao.updateList(currentList);
+        for (ListItem item: currentList.getAllListItems()) {
+            dao.toggleListItemIsChecked(item.getId(), false);
+        }
+        currentList = dao.loadList(currentList.getId());
     }
 
     public void addListItem(ListItem item){
-        currentList.addListItem(item);
-        dao.updateList(currentList);
+        dao.addItemToList(currentList.getId(), item.getId(), item.getQuantity());
+        currentList = dao.loadList(currentList.getId());
     }
 
     public void removeListItem(ListItem item){
-        currentList.removeListItemById(item.getId());
-        dao.updateList(currentList);
+        dao.deleteItemFromList(item.getId());
+        currentList = dao.loadList(currentList.getId());
     }
 
     public void updateItem(ListItem item) {
         for (ListItem i: currentList.getAllListItems()) {
             if(i.getId() == item.getId()){
-                currentList.removeListItemById(i.getId());
-                currentList.addListItem(item);
+                dao.deleteItemFromList(item.getId());
+                dao.addItemToList(currentList.getId(), item.getId(), item.getQuantity());
             }
         }
 
-        dao.updateList(currentList);
+        currentList = dao.loadList(currentList.getId());
     }
 }
