@@ -31,7 +31,8 @@
             android:layout_width="180dp"
             android:layout_height="57dp"
             android:id="@+id/deleteList"
-            android:onClick="deleteSelectedLists"/>
+            android:onClick="deleteSelectedLists"
+            android:enabled="false"/>
 
     </LinearLayout>
 </LinearLayout>

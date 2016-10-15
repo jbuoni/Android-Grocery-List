@@ -38,7 +38,7 @@ public class GroceryListActivity extends AppCompatActivity {
 
         //Auto update the list view
         ListView lv = (ListView)findViewById(R.id.listItemContainer);
-        listAdapter = new ItemArrayAdapter(this, listItems);
+        listAdapter = new ItemArrayAdapter(this, listItems, groceryListController);
         lv.setAdapter(listAdapter);
 
         generateListItemViews();
@@ -65,6 +65,5 @@ public class GroceryListActivity extends AppCompatActivity {
         listItems.addAll(groceryListController.getCurrentListItems());
         listAdapter.notifyDataSetChanged();
     }
-
 
 }
