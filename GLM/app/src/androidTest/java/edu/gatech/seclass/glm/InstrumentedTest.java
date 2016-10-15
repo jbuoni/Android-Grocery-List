@@ -344,7 +344,7 @@ public class InstrumentedTest {
     /**
      * Test that creating a new item stores it in the database.
      */
-    public void testDeleteItem() {
+    public void testCreateNewItem() {
 
         Context appContext = InstrumentationRegistry.getTargetContext();
         DAOI daoi = new DAO(appContext);
