@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setTitle("Delete Grocery List(s):");
         dialogBuilder.setMessage("Select a grocery list for removal");
 
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OccnClickListener() {
             public void onClick(DialogInterface dialog, int buttonVal) {
                 if(groceryListEditText.getText().toString().isEmpty() || digitsOnly == false || numVal > listCount) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid entry. Please try again.", Toast.LENGTH_LONG);
