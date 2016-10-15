@@ -62,6 +62,17 @@ Add Item To List
 **Exit Criteria**
 The output of this is an item that is checked off of the grocery list. 
 
+### Update Item Quantity
+**Description**
+The user updates the quantity of a specific item associated with a list. 
+
+**Enterance Criteria**
+Create Grocery List
+Add Item To List
+
+**Exit Criteria**
+The item quanitity for specified item is updated with the new inputted value. 
+
 ## 3 Team 47
 
 **Jason Buoni**
