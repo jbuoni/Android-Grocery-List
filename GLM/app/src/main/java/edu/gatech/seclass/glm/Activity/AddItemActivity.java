@@ -1,5 +1,6 @@
 package edu.gatech.seclass.glm.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -59,6 +60,10 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         if(quantity.getText().toString().length()>0){
             Toast.makeText(this, quantity.getText().toString()
                     + " " + Integer.toString(sp_item.getSelectedItemPosition()), Toast.LENGTH_LONG).show();
+            int listID = this.getIntent().getIntExtra("groceryListID", -1);
+            daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(),Integer.parseInt(quantity.getText().toString()));
+            startActivity(new Intent(this, GroceryListActivity.class));
+
         }else{
             Toast.makeText(this, "You must enter a quantity", Toast.LENGTH_LONG).show();
         }

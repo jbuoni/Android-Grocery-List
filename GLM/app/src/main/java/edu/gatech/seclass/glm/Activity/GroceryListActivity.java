@@ -21,6 +21,7 @@ import edu.gatech.seclass.glm.Utils.ItemArrayAdapter;
 
 public class GroceryListActivity extends AppCompatActivity {
 
+    public static final int ADDRQ = 100;
     private ItemArrayAdapter listAdapter;
     private List<ListItem> listItems;
     private ListMgmtController groceryListController;
@@ -48,7 +49,9 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     public void addItem(View view){
-        startActivity(new Intent(this, AddItemActivity.class));
+        Intent intentAddAct = new Intent(this,AddItemActivity.class);
+        intentAddAct.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        startActivity(intentAddAct);
     }
 
     public void uncheckAllItems(View view){
@@ -60,4 +63,6 @@ public class GroceryListActivity extends AppCompatActivity {
         listItems = groceryListController.getCurrentListItems();
         listAdapter.notifyDataSetChanged();
     }
+
+
 }
