@@ -35,6 +35,11 @@ public class ListMgmtController {
         return currentList;
     }
 
+    public void toggleCheck(ListItem item) {
+        dao.toggleListItemIsChecked(item.getId(), item.getIsChecked());
+        currentList = dao.loadList(currentList.getId());
+    }
+
     public void uncheckAllListItems(){
         currentList.uncheckAllListItems();
         for (ListItem item: currentList.getAllListItems()) {

@@ -93,6 +93,7 @@ public class ItemArrayAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 items.get(position).setIsChecked(!items.get(position).getIsChecked());
+                controller.toggleCheck(items.get(position));
             }
         });
 
