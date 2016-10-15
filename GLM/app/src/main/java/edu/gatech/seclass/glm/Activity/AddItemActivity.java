@@ -38,6 +38,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item);
+        //grab grocerlistid save to private variable
         //add decimal number box
         quantity = (EditText)findViewById(R.id.aQuant);
 
@@ -58,9 +59,11 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
 
     public void buttonOnClick(View view){
         if(quantity.getText().toString().length()>0){
+            //
             int listID = this.getIntent().getIntExtra("groceryListID", -1);
             daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(),Integer.parseInt(quantity.getText().toString()));
             Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
+            intent.putExtra("GroceryList", daoi.loadList(listID));
             startActivity(intent);
 
         }else{
