@@ -58,11 +58,10 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
 
     public void buttonOnClick(View view){
         if(quantity.getText().toString().length()>0){
-            Toast.makeText(this, quantity.getText().toString()
-                    + " " + Integer.toString(sp_item.getSelectedItemPosition()), Toast.LENGTH_LONG).show();
             int listID = this.getIntent().getIntExtra("groceryListID", -1);
             daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(),Integer.parseInt(quantity.getText().toString()));
-            startActivity(new Intent(this, GroceryListActivity.class));
+            Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
+            startActivity(intent);
 
         }else{
             Toast.makeText(this, "You must enter a quantity", Toast.LENGTH_LONG).show();
