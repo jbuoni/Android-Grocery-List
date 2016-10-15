@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     toast.show();
                 } else {
                     listController.createList(groceryListEditText.getText().toString());
+                    //Safer method when using listAdapters so that the object remains the same
+                    groceryLists.clear();
+                    groceryLists.addAll(listController.getAllLists());
                     groceryListArrayAdapter.notifyDataSetChanged();
                     dialog.dismiss();
                     listCount++;

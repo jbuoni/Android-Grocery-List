@@ -60,7 +60,9 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     private void generateListItemViews() {
-        listItems = groceryListController.getCurrentListItems();
+        //Better way when using ArrayAdapters. Keeps object reference the same.
+        listItems.clear();
+        listItems.addAll(groceryListController.getCurrentListItems());
         listAdapter.notifyDataSetChanged();
     }
 
