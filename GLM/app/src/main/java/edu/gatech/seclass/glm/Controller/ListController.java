@@ -19,13 +19,14 @@ public class ListController {
         dao = new DAO(context);
     }
 
-    public void createList(String name) {
-        dao.createList(name);
+    public void createList(String name) {dao.createList(name);
     }
 
     public List<GroceryList> getAllLists() {
         return dao.getAllLists();
     }
+
+    public void deleteList (Integer id) {dao.deleteList(id);}
 
 
 }
