@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Model.GroceryList;
+import edu.gatech.seclass.glm.Model.Item;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.DAO.DAO;
 
@@ -53,6 +54,10 @@ public class ListMgmtController {
         currentList = dao.loadList(currentList.getId());
     }
 
+    public void addListItemNoId(Integer groceryListID, Integer itemID, Integer quantity) {
+        dao.addItemToList(groceryListID, itemID, quantity);
+    }
+
     public void removeListItem(ListItem item){
         dao.deleteItemFromList(item.getId());
         currentList = dao.loadList(currentList.getId());
@@ -67,5 +72,9 @@ public class ListMgmtController {
         }
 
         currentList = dao.loadList(currentList.getId());
+    }
+
+    public List<Item> searchForItem(String searchText) {
+        return dao.findItemsLike(searchText);
     }
 }

@@ -45,11 +45,13 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     public void searchItem(View view){
-        startActivity(new Intent(this, SearchItemActivity.class));
+        Intent intent = new Intent(this, SearchItemActivity.class);
+        intent.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        startActivity(intent);
     }
 
     public void addItem(View view){
-        Intent intentAddAct = new Intent(this,AddItemActivity.class);
+        Intent intentAddAct = new Intent(this, AddItemActivity.class);
         intentAddAct.putExtra("groceryListID", groceryListController.getCurrentList().getId());
         startActivity(intentAddAct);
     }
