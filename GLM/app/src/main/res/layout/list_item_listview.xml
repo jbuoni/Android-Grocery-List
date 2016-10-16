@@ -23,6 +23,14 @@
         android:focusable="false"
         android:focusableInTouchMode="false"/>
 
+    <EditText
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="Quantity"
+        android:ems="10"
+        android:id="@+id/itemQuantity" />
+
     <Button
         android:text="X"
         android:layout_width="47dp"

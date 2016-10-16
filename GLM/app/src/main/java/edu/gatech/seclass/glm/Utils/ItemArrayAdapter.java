@@ -1,6 +1,8 @@
 package edu.gatech.seclass.glm.Utils;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -82,18 +85,48 @@ public class ItemArrayAdapter extends BaseAdapter{
         View rowView;
         rowView = inflater.inflate(R.layout.list_item_listview, null);
 
-        CheckBox checkBox = (CheckBox)rowView.findViewById(R.id.itemCheckBox);
-        final EditText itemName = (EditText)rowView.findViewById(R.id.itemName);
-        Button removeItem = (Button)rowView.findViewById(R.id.removeItemButton);
+        CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.itemCheckBox);
+        final EditText itemName = (EditText) rowView.findViewById(R.id.itemName);
+        Button removeItem = (Button) rowView.findViewById(R.id.removeItemButton);
+        final EditText quantity = (EditText) rowView.findViewById(R.id.itemQuantity);
+        final ListItem currentItem = items.get(position);
 
-        checkBox.setChecked(items.get(position).getIsChecked());
-        itemName.setText(items.get(position).getItem().getName());
+        checkBox.setChecked(currentItem.getIsChecked());
+        itemName.setText(currentItem.getItem().getName());
+        quantity.setText(currentItem.getQuantity().toString());
 
         checkBox.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                items.get(position).setIsChecked(!items.get(position).getIsChecked());
+                currentItem.setIsChecked(!currentItem.getIsChecked());
                 controller.toggleCheck(items.get(position));
+            }
+        });
+
+        quantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //Do nothing
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Update quantity if integer
+                if(!quantity.getText().toString().isEmpty()){
+                    try {
+                        currentItem.setQuantity(Integer.parseInt(quantity.getText().toString()));
+                    } catch (NumberFormatException ex) {
+                        Toast.makeText(context, "You must enter a valid quantity", Toast.LENGTH_LONG).show();
+                    }
+
+                    controller.updateItem(currentItem);
+                    notifyDataSetChanged();
+                }
             }
         });
 
@@ -101,20 +134,12 @@ public class ItemArrayAdapter extends BaseAdapter{
         removeItem.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                controller.removeListItem(items.get(position));
+                controller.removeListItem(currentItem);
                 items.remove(position);
                 notifyDataSetChanged();
             }
         });
 
         return rowView;
-    }
-
-    /**
-     * Returns all items
-     * @return - List<ListItem>
-     */
-    public List<ListItem> getItems() {
-        return items;
     }
 }

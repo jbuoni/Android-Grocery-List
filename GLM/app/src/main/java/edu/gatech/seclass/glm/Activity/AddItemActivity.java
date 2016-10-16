@@ -61,19 +61,21 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         if(quantity.getText().toString().length()>0){
             //
             int listID = this.getIntent().getIntExtra("groceryListID", -1);
-            daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(),Integer.parseInt(quantity.getText().toString()));
+            try {
+                Integer q = Integer.parseInt(quantity.getText().toString());
+                daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
+            } catch (NumberFormatException ex) {
+                makeToast("You must enter a valid quantity");
+            }
             Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
             intent.putExtra("GroceryList", daoi.loadList(listID));
             startActivity(intent);
 
         }else{
-            Toast.makeText(this, "You must enter a quantity", Toast.LENGTH_LONG).show();
+            makeToast("You must enter a valid quantity");
         }
 
     }
-
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -122,5 +124,9 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         ArrayAdapter<String> adapterItem = new ArrayAdapter<>(AddItemActivity.this, android.R.layout.simple_spinner_item, listStrItems);
         sp_item.setAdapter(adapterItem);
 
+    }
+
+    private void makeToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 }
