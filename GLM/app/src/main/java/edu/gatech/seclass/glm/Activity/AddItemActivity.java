@@ -52,7 +52,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         sp_type.setOnItemSelectedListener(this);
     }
 
-    public void buttonOnClick(View view){
+    public void addItemButtonOnClick(View view){
         if(quantity.getText().toString().length()>0){
             //
             int listID = this.getIntent().getIntExtra("groceryListID", -1);

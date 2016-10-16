@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Search For Item"
+            android:text="@string/search_for_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button2"
@@ -24,7 +24,7 @@
             android:onClick="searchItem"/>
 
         <Button
-            android:text="Add Item"
+            android:text="@string/add_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button3"
@@ -32,7 +32,7 @@
             android:onClick="addItem"/>
 
         <Button
-            android:text="Uncheck All"
+            android:text="@string/uncheck_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button4"

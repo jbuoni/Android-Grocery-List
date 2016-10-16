@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="List Name"
+        android:text="@string/list_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listNameTxtView" />
@@ -17,7 +17,7 @@
         android:id="@+id/groceryListName" />
 
     <Button
-        android:text="Delete List"
+        android:text="@string/delete_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/deleteListButton" />

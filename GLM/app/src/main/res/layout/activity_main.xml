@@ -14,7 +14,7 @@
         android:layout_weight="0.66" />
 
     <Button
-        android:text="Add List"
+        android:text="@string/add_list"
         android:layout_width="374dp"
         android:layout_height="51dp"
         android:id="@+id/addList"

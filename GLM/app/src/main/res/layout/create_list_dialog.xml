@@ -9,6 +9,6 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/groceryListName"
-        android:hint="My List" />
+        android:hint="@string/list_hint" />
 
 </LinearLayout>

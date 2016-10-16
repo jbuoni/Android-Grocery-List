@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="Item Type"
+        android:text="@string/item_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/atxtType" />
@@ -15,7 +15,7 @@
         android:id="@+id/aspnType" />
 
     <TextView
-        android:text="Item"
+        android:text="@string/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/atxtItem" />
@@ -26,10 +26,9 @@
         android:id="@+id/aspnItem" />
 
     <TextView
-        android:text="Quantity"
+        android:text="@string/quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:id="@+id/textView4" />
 
     <EditText
@@ -40,9 +39,9 @@
         android:id="@+id/aQuant" />
 
     <Button
-        android:text="Add Item"
+        android:text="@string/add_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addButton"
-        android:onClick="buttonOnClick" />
+        android:onClick="addItemButtonOnClick" />
 </LinearLayout>
