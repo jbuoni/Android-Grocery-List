@@ -6,6 +6,7 @@ import java.util.List;
 
 import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.Item;
+import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.DAO.DAO;
 
@@ -76,5 +77,13 @@ public class ListMgmtController {
 
     public List<Item> searchForItem(String searchText) {
         return dao.findItemsLike(searchText);
+    }
+
+    public List<ItemType> getAllItemTypes() {
+        return dao.getAllItemTypes();
+    }
+
+    public List<Item> getAllItemsByType(ItemType type) {
+        return dao.getItemsByItemType(type);
     }
 }

@@ -1,6 +1,5 @@
 package edu.gatech.seclass.glm.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,22 +16,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Controller.ListMgmtController;
-import edu.gatech.seclass.glm.Model.GroceryList;
 import edu.gatech.seclass.glm.Model.Item;
-import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.R;
 
 /**
  * Created by jbuoni on 10/11/16.
  */
-
 public class SearchItemActivity extends AppCompatActivity {
 
     private ListMgmtController controller;
     private ArrayAdapter<String> listAdapter;
     private List<Item> items;
     private ArrayList<String> arrayItems;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +36,6 @@ public class SearchItemActivity extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.searchResultsListView);
         final EditText searchText = (EditText) findViewById(R.id.searchBar);
-        context = getApplicationContext();
 
         items = new LinkedList<Item>();
         arrayItems = new ArrayList<String>();

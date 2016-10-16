@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -15,8 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.seclass.glm.DAO.DAO;
-import edu.gatech.seclass.glm.DAO.DAOI;
+import edu.gatech.seclass.glm.Controller.ListMgmtController;
 import edu.gatech.seclass.glm.Model.Item;
 import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.R;
@@ -28,22 +26,19 @@ import edu.gatech.seclass.glm.R;
 public class AddItemActivity extends AppCompatActivity implements OnItemSelectedListener {
     private Spinner sp_type, sp_item;
     private EditText quantity;
-    Button clickButton;
-    DAOI daoi = new DAO(this);
-    List<ItemType> curItemTypes = new ArrayList<>();
-    List<Item> listItems = new ArrayList<>();
-
+    private List<ItemType> curItemTypes = new ArrayList<>();
+    private List<Item> listItems = new ArrayList<>();
+    private ListMgmtController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item);
+
+        controller = new ListMgmtController(getApplicationContext());
         //grab grocerlistid save to private variable
         //add decimal number box
         quantity = (EditText)findViewById(R.id.aQuant);
-
-        //add button
-        clickButton = (Button) findViewById(R.id.addButton);
 
         //get spinners
         sp_type = (Spinner)findViewById(R.id.aspnType);
@@ -61,14 +56,15 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         if(quantity.getText().toString().length()>0){
             //
             int listID = this.getIntent().getIntExtra("groceryListID", -1);
+            controller.updateCurrentList(listID);
             try {
                 Integer q = Integer.parseInt(quantity.getText().toString());
-                daoi.addItemToList(listID,listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
+                controller.addListItemNoId(listID, listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
             } catch (NumberFormatException ex) {
                 makeToast("You must enter a valid quantity");
             }
             Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
-            intent.putExtra("GroceryList", daoi.loadList(listID));
+            intent.putExtra("GroceryList", controller.getCurrentList());
             startActivity(intent);
 
         }else{
@@ -100,7 +96,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
     //populates type spinner
     private void populate_spntype(){
         //get list of types to populate
-        curItemTypes = daoi.getAllItemTypes();
+        curItemTypes = controller.getAllItemTypes();
         List<String> listStrTypes = new ArrayList<>();
 
         for (int i = 0; i<curItemTypes.size(); i++){
@@ -114,7 +110,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
     //populates item spinner
     private void populate_spnitem(ItemType curType){
         //Get all items and populate the item spinner
-        listItems = daoi.getItemsByItemType(curType);
+        listItems = controller.getAllItemsByType(curType);
         List<String> listStrItems = new ArrayList<>();
         //Get names of all the items
         for (int i = 0; i<listItems.size(); i++){
