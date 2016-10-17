@@ -20,7 +20,7 @@ import edu.gatech.seclass.glm.Model.ListItem;
 
 public class DAO extends SQLiteOpenHelper implements DAOI {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "GroceryListManager.db";
     public static final String TEXT_TYPE = " TEXT";
 
@@ -331,10 +331,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 ", IT." + DatabaseContract.ItemTypeEntry.NAME_COLUMN +
                 " FROM " +
                 DatabaseContract.ItemEntry.TABLE_NAME +
-                " AS I JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
+                " AS I LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
                 " IT." + DatabaseContract.ItemTypeEntry._ID +
                 "= I." + DatabaseContract.ItemEntry._ID +
-                " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE \"%" + searchString + "%\"", null);
+                " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE '%" + searchString + "%'", null);
 
         //put the results in a List of Items
         List<Item> searchResults = new ArrayList<Item>();

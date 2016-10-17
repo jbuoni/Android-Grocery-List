@@ -162,7 +162,7 @@ public class InstrumentedTest {
         GroceryList testListFromID1 = daoi.loadList(testListId1);
         String newListName = "Test List1 Updated";
         testListFromID1.setName(newListName);
-        daoi.updateListName(testListFromID1);
+        daoi.updateListName(testListFromID1, newListName);
         testListFromID1 = daoi.loadList(testListId1);
         assertEquals(newListName, testListFromID1.getName());
     }
@@ -336,6 +336,27 @@ public class InstrumentedTest {
         }
 
         assertEquals(beerNames.size(), foundCount);
+
+
+        testList = daoi.findItemsLike("Milk");
+        List<String> milkNames = new ArrayList<String>();
+        milkNames.add("Gallon Whole Milk");
+        milkNames.add("Gallon Skim Milk");
+
+        foundCount = 0;
+        for (Item i:testList)
+        {
+            String itemName = i.getName();
+            for (String milkName:milkNames)
+            {
+                if (milkName.equals(itemName))
+                {
+                    foundCount++;
+                }
+            }
+        }
+
+        assertEquals(milkNames.size(), foundCount);
 
     }
 
