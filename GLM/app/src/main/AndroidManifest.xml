@@ -19,21 +19,21 @@
             </intent-filter>
         </activity>
         <activity android:name="edu.gatech.seclass.glm.Activity.GroceryListActivity"
-            android:label="@string/app_name"
+            android:label="@string/grocery_lists_title"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name="edu.gatech.seclass.glm.Activity.AddItemActivity"
-            android:label="@string/app_name"
+            android:label="@string/add_item_title"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name="edu.gatech.seclass.glm.Activity.SearchItemActivity"
-            android:label="@string/app_name"
+            android:label="@string/search_title"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -41,7 +41,7 @@
         </activity>
 
         <activity android:name="edu.gatech.seclass.glm.Activity.AddNewItemActivity"
-            android:label="@string/app_name"
+            android:label="@string/new_item_title"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />

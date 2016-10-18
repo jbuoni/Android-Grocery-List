@@ -7,11 +7,12 @@
         android:id="@+id/add_list"
         android:orderInCategory="100"
         android:title="@string/add_list"
-        app:showAsAction="never" />
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/exit"
         android:orderInCategory="100"
-        android:title="Exit"
-        android:showAsAction="never" />
+        android:title="@string/exit"
+        app:showAsAction="never" />
 </menu>

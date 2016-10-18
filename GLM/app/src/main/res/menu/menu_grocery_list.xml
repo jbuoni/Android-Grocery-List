@@ -28,7 +28,7 @@
     <item
         android:id="@+id/select_list"
         android:orderInCategory="100"
-        android:title="Select Grocery List"
+        android:title="@string/select_list"
         app:showAsAction="never" />
 
 </menu>

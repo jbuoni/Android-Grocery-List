@@ -21,7 +21,7 @@
     <item
         android:id="@+id/back"
         android:orderInCategory="100"
-        android:title="Back"
+        android:title="@string/back"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         app:showAsAction="always" />
 
