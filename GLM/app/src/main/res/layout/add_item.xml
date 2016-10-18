@@ -39,16 +39,16 @@
         android:id="@+id/aQuant" />
 
     <Button
-        android:text="@string/add_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addButton"
-        android:onClick="addItemButtonOnClick" />
-
-    <Button
         android:text="@string/add_new_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addNewItem"
-        android:onClick="addNewItemButtonOnClick"/>
+        android:id="@+id/addButton"
+        android:onClick="addNewItemButtonOnClick" />
+
+    <!--<Button-->
+        <!--android:text="@string/add_new_item"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/addNewItem"-->
+        <!--android:onClick="addNewItemButtonOnClick"/>-->
 </LinearLayout>

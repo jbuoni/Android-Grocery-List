@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,8 +42,26 @@ public class MainActivity extends AppCompatActivity {
         groceryListView.setAdapter(groceryListArrayAdapter);
     }
 
-    public void addList(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.exit:
+                finish();
+                return(true);
+            case R.id.add_list:
+                addList();
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    private void addList() {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.create_list_dialog, null);
@@ -74,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog createListDialog = dialogBuilder.create();
         createListDialog.show();
+    }
+
+    public void addList(View view) {
+
+        addList();
     }
 
     public void deleteSelectedLists(View view) {

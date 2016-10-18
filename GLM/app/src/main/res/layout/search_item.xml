@@ -38,11 +38,11 @@
         android:layout_height="390dp"
         android:id="@+id/searchResultsListView" />
 
-    <Button
-        android:text="@string/add_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/addNewItem"
-        android:onClick="addNewItemToDatabase"/>
+    <!--<Button-->
+        <!--android:text="@string/add_item"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/addNewItem"-->
+        <!--android:onClick="addNewItemToDatabase"/>-->
 
 </LinearLayout>

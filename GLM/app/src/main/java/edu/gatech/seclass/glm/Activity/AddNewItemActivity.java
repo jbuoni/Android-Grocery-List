@@ -3,6 +3,8 @@ package edu.gatech.seclass.glm.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -42,8 +44,33 @@ public class AddNewItemActivity extends AppCompatActivity {
         populate_spntype();
     }
 
-    public void addItemButtonOnClick(View v) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_new_item, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.add_item:
+                addNewItem();
+                return(true);
+            case R.id.back:
+                Intent intent = new Intent(this, GroceryListActivity.class);
+                intent.putExtra("GroceryList", controller.getCurrentList());
+                startActivity(intent);
+                return(true);
+            case R.id.select_list:
+                startActivity(new Intent(this, MainActivity.class));
+                return(true);
+
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    private void addNewItem() {
         String itemName = itemNameEditText.getText().toString();
         String itemQuantity = itemQuantityEditText.getText().toString();
         if (itemName.isEmpty()) {
@@ -65,6 +92,10 @@ public class AddNewItemActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void addItemButtonOnClick(View v) {
+        addNewItem();
     }
 
     private void populate_spntype(){

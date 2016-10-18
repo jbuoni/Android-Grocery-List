@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -79,10 +81,40 @@ public class SearchItemActivity extends AppCompatActivity {
         });
     }
 
-    public void addNewItemToDatabase(View v) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.add_item:
+                addNewItem();
+                return(true);
+            case R.id.back:
+                Intent intent = new Intent(this, GroceryListActivity.class);
+                intent.putExtra("GroceryList", controller.getCurrentList());
+                startActivity(intent);
+                return(true);
+            case R.id.select_list:
+                startActivity(new Intent(this, MainActivity.class));
+                return(true);
+
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    private void addNewItem() {
         Intent intentAddNewItemAct = new Intent(this, AddNewItemActivity.class);
         intentAddNewItemAct.putExtra("groceryListID", controller.getCurrentList().getId());
         startActivity(intentAddNewItemAct);
+    }
+
+    public void addNewItemToDatabase(View v) {
+        addNewItem();
     }
 
     private void updateListView(String searchString) {

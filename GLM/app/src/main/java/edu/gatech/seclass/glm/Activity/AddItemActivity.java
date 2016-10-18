@@ -3,6 +3,8 @@ package edu.gatech.seclass.glm.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -55,7 +57,43 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         controller.updateCurrentList(listID);
     }
 
-    public void addItemButtonOnClick(View view){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_add_item, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.search:
+                searchItem();
+                return(true);
+            case R.id.add_item:
+                addItem();
+                return(true);
+            case R.id.back:
+                loadGroceryListActivity();
+                return(true);
+
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    private void searchItem(){
+        Intent intent = new Intent(this, SearchItemActivity.class);
+        intent.putExtra("groceryListID", controller.getCurrentList().getId());
+        startActivity(intent);
+    }
+
+    private void loadGroceryListActivity() {
+        Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
+        intent.putExtra("GroceryList", controller.getCurrentList());
+        startActivity(intent);
+    }
+
+    private void addItem() {
         if(quantity.getText().toString().length()>0){
             try {
                 Integer q = Integer.parseInt(quantity.getText().toString());
@@ -63,14 +101,15 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
             } catch (NumberFormatException ex) {
                 makeToast("You must enter a valid quantity");
             }
-            Intent intent = new Intent(AddItemActivity.this, GroceryListActivity.class);
-            intent.putExtra("GroceryList", controller.getCurrentList());
-            startActivity(intent);
+            loadGroceryListActivity();
 
         }else{
             makeToast("You must enter a valid quantity");
         }
+    }
 
+    public void addItemButtonOnClick(View view){
+        addItem();
     }
 
     public void addNewItemButtonOnClick(View view){

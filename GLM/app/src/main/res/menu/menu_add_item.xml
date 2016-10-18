@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.gatech.seclass.glm.Activity.GroceryListActivity">
+
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="@string/search_for_item"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_search" />
+
+    <item
+        android:id="@+id/add_item"
+        android:orderInCategory="100"
+        android:title="@string/add_item"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_add" />
+
+    <item
+        android:id="@+id/back"
+        android:orderInCategory="100"
+        android:title="Back"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        app:showAsAction="always" />
+
+    <!--<item-->
+        <!--android:id="@+id/select_list"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="Select Grocery List"-->
+        <!--app:showAsAction="never" />-->
+
+</menu>

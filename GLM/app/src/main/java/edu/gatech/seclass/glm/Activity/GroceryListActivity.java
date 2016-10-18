@@ -3,6 +3,8 @@ package edu.gatech.seclass.glm.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -41,6 +43,50 @@ public class GroceryListActivity extends AppCompatActivity {
         listAdapter = new ItemArrayAdapter(this, listItems, groceryListController);
         lv.setAdapter(listAdapter);
 
+        generateListItemViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_grocery_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.add_item:
+                addItem();
+                return(true);
+            case R.id.search:
+                searchItem();
+                return(true);
+            case R.id.uncheck_all:
+                uncheckAllItems();
+                return(true);
+            case R.id.select_list:
+                startActivity(new Intent(this, MainActivity.class));
+                return(true);
+
+        }
+        return(super.onOptionsItemSelected(item));
+    }
+
+    private void searchItem(){
+        Intent intent = new Intent(this, SearchItemActivity.class);
+        intent.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        startActivity(intent);
+    }
+
+    private void addItem(){
+        Intent intentAddAct = new Intent(this, AddItemActivity.class);
+        intentAddAct.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        startActivity(intentAddAct);
+    }
+
+    private void uncheckAllItems(){
+        groceryListController.uncheckAllListItems();
         generateListItemViews();
     }
 

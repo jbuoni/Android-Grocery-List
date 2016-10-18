@@ -13,12 +13,12 @@
         android:id="@+id/groceryListContainer"
         android:layout_weight="0.66" />
 
-    <Button
-        android:text="@string/add_list"
-        android:layout_width="374dp"
-        android:layout_height="51dp"
-        android:id="@+id/addList"
-        android:onClick="addList"
-        android:layout_weight="0.26" />
+    <!--<Button-->
+        <!--android:text="@string/add_list"-->
+        <!--android:layout_width="374dp"-->
+        <!--android:layout_height="51dp"-->
+        <!--android:id="@+id/addList"-->
+        <!--android:onClick="addList"-->
+        <!--android:layout_weight="0.26" />-->
 
 </LinearLayout>
