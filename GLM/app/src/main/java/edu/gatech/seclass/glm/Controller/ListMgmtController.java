@@ -86,4 +86,8 @@ public class ListMgmtController {
     public List<Item> getAllItemsByType(ItemType type) {
         return dao.getItemsByItemType(type);
     }
+
+    public Item addNewItemToDB(String itemName, Integer itemTypeID) {
+        return dao.createNewItem(itemName, itemTypeID);
+    }
 }

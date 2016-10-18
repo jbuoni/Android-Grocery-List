@@ -79,6 +79,12 @@ public class SearchItemActivity extends AppCompatActivity {
         });
     }
 
+    public void addNewItemToDatabase(View v) {
+        Intent intentAddNewItemAct = new Intent(this, AddNewItemActivity.class);
+        intentAddNewItemAct.putExtra("groceryListID", controller.getCurrentList().getId());
+        startActivity(intentAddNewItemAct);
+    }
+
     private void updateListView(String searchString) {
         arrayItems.clear();
         items = controller.searchForItem(searchString);

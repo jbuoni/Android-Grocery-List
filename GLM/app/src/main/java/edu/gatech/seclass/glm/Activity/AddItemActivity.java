@@ -50,16 +50,16 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
 
         //set listeners
         sp_type.setOnItemSelectedListener(this);
+
+        int listID = this.getIntent().getIntExtra("groceryListID", -1);
+        controller.updateCurrentList(listID);
     }
 
     public void addItemButtonOnClick(View view){
         if(quantity.getText().toString().length()>0){
-            //
-            int listID = this.getIntent().getIntExtra("groceryListID", -1);
-            controller.updateCurrentList(listID);
             try {
                 Integer q = Integer.parseInt(quantity.getText().toString());
-                controller.addListItemNoId(listID, listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
+                controller.addListItemNoId(controller.getCurrentList().getId(), listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
             } catch (NumberFormatException ex) {
                 makeToast("You must enter a valid quantity");
             }
@@ -71,6 +71,12 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
             makeToast("You must enter a valid quantity");
         }
 
+    }
+
+    public void addNewItemButtonOnClick(View view){
+        Intent intentNewAddAct = new Intent(this, AddNewItemActivity.class);
+        intentNewAddAct.putExtra("groceryListID", controller.getCurrentList().getId());
+        startActivity(intentNewAddAct);
     }
 
     @Override
@@ -99,7 +105,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         curItemTypes = controller.getAllItemTypes();
         List<String> listStrTypes = new ArrayList<>();
 
-        for (int i = 0; i<curItemTypes.size(); i++){
+        for (int i = 0; i < curItemTypes.size(); i++){
             listStrTypes.add(curItemTypes.get(i).getName());
         }
 
