@@ -7,6 +7,7 @@
     <string name="item">Item</string>
     <string name="quantity">Quantity</string>
     <string name="item_type">Item Type</string>
+    <string name="item_name">Item Name</string>
     <string name="list_hint">My List</string>
     <string name="list_name">List Name</string>
     <string name="delete_list">Delete List</string>
