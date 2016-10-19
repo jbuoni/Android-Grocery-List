@@ -8,6 +8,9 @@ import edu.gatech.seclass.glm.DAO.DAO;
 import edu.gatech.seclass.glm.Model.GroceryList;
 
 /**
+ * ListMgmtController handles all communication between the current grocery list, and the UI
+ * and database.
+ *
  * Created by jbuoni on 10/12/16.
  */
 

@@ -96,7 +96,7 @@ public class ListItem implements Comparable<ListItem>, Serializable {
     @Override
     public int compareTo(ListItem item) {
 
-        return this.getItem().getItemType().getName().compareTo(item.getItem().getItemType().getName());
+        return this.getItem().getItemType().getId().compareTo(item.getItem().getItemType().getId());
 
     }
 

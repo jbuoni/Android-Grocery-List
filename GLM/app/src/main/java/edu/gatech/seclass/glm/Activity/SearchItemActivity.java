@@ -52,7 +52,7 @@ public class SearchItemActivity extends AppCompatActivity {
                 for (Item item: items) {
                     if (item.getName().equals(arrayItems.get(position))){
 
-                        controller.addListItemNoId(controller.getCurrentList().getId(), item.getId(), Integer.valueOf(1));
+                        controller.addListItem(controller.getCurrentList().getId(), item.getId(), Integer.valueOf(1));
 
                         Intent intent = new Intent(listView.getContext(), GroceryListActivity.class);
                         intent.putExtra("GroceryList", controller.getCurrentList());

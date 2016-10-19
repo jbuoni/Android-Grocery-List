@@ -97,7 +97,7 @@ public class AddItemActivity extends AppCompatActivity implements OnItemSelected
         if(quantity.getText().toString().length()>0){
             try {
                 Integer q = Integer.parseInt(quantity.getText().toString());
-                controller.addListItemNoId(controller.getCurrentList().getId(), listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
+                controller.addListItem(controller.getCurrentList().getId(), listItems.get(sp_item.getSelectedItemPosition()).getId(), q);
             } catch (NumberFormatException ex) {
                 makeToast("You must enter a valid quantity");
             }

@@ -82,7 +82,7 @@ public class AddNewItemActivity extends AppCompatActivity {
 
             try {
                 Integer quantity = Integer.parseInt(itemQuantity);
-                controller.addListItemNoId(controller.getCurrentList().getId(), newItem.getId(), quantity);
+                controller.addListItem(controller.getCurrentList().getId(), newItem.getId(), quantity);
 
                 Intent intent = new Intent(this, GroceryListActivity.class);
                 intent.putExtra("GroceryList", controller.getCurrentList());
