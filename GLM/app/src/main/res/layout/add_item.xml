@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <TextView
         android:text="@string/item_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/atxtType" />
+        android:id="@+id/atxtType"
+        android:textSize="18sp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/aspnType" />
+        android:id="@+id/aspnType"
+        android:textSize="18sp"
+        android:layout_weight="0.35" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_weight="0.23" />
 
     <TextView
         android:text="@string/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/atxtItem" />
+        android:id="@+id/atxtItem"
+        android:textSize="18sp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/aspnItem" />
+        android:id="@+id/aspnItem"
+        android:textSize="18sp"
+        android:layout_weight="0.24" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_weight="0.16" />
 
     <TextView
         android:text="@string/quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
+        android:id="@+id/textView4"
+        android:textSize="18sp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -37,6 +55,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/aQuant" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="140dp" />
 
     <Button
         android:text="@string/add_new_item"
