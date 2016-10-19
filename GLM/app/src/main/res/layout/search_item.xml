@@ -4,27 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<LinearLayout-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-        <!--<EditText-->
-            <!--android:layout_width="321dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"-->
-            <!--android:drawableLeft="@android:drawable/ic_menu_search"-->
-            <!--android:ems="10"-->
-            <!--android:id="@+id/searchBar" />-->
-
-        <!--<Button-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:drawableLeft="@android:drawable/ic_menu_search"-->
-            <!--android:id="@+id/searchButton"-->
-            <!--android:onClick="onSearch" />-->
-    <!--</LinearLayout>-->
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,11 +17,5 @@
         android:layout_height="390dp"
         android:id="@+id/searchResultsListView" />
 
-    <!--<Button-->
-        <!--android:text="@string/add_item"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/addNewItem"-->
-        <!--android:onClick="addNewItemToDatabase"/>-->
 
 </LinearLayout>

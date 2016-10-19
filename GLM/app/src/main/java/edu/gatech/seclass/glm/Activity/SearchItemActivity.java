@@ -113,9 +113,6 @@ public class SearchItemActivity extends AppCompatActivity {
         startActivity(intentAddNewItemAct);
     }
 
-    public void addNewItemToDatabase(View v) {
-        addNewItem();
-    }
 
     private void updateListView(String searchString) {
         arrayItems.clear();

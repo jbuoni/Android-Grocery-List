@@ -94,10 +94,6 @@ public class AddNewItemActivity extends AppCompatActivity {
         }
     }
 
-    public void addItemButtonOnClick(View v) {
-        addNewItem();
-    }
-
     private void populate_spntype(){
         //get list of types to populate
         curItemTypes = controller.getAllItemTypes();

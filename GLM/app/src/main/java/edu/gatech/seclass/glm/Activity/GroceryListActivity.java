@@ -90,23 +90,6 @@ public class GroceryListActivity extends AppCompatActivity {
         generateListItemViews();
     }
 
-    public void searchItem(View view){
-        Intent intent = new Intent(this, SearchItemActivity.class);
-        intent.putExtra("groceryListID", groceryListController.getCurrentList().getId());
-        startActivity(intent);
-    }
-
-    public void addItem(View view){
-        Intent intentAddAct = new Intent(this, AddItemActivity.class);
-        intentAddAct.putExtra("groceryListID", groceryListController.getCurrentList().getId());
-        startActivity(intentAddAct);
-    }
-
-    public void uncheckAllItems(View view){
-        groceryListController.uncheckAllListItems();
-        generateListItemViews();
-    }
-
     private void generateListItemViews() {
         //Better way when using ArrayAdapters. Keeps object reference the same.
         listItems.clear();

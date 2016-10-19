@@ -2,7 +2,6 @@ package edu.gatech.seclass.glm.Controller;
 
 import android.content.Context;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

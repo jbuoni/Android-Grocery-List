@@ -67,10 +67,4 @@
         android:id="@+id/addButton"
         android:onClick="addNewItemButtonOnClick" />
 
-    <!--<Button-->
-        <!--android:text="@string/add_new_item"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/addNewItem"-->
-        <!--android:onClick="addNewItemButtonOnClick"/>-->
 </LinearLayout>
