@@ -2,6 +2,8 @@ package edu.gatech.seclass.glm.Controller;
 
 import android.content.Context;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import edu.gatech.seclass.glm.Model.GroceryList;
@@ -30,7 +32,12 @@ public class ListMgmtController {
     public List<ListItem> getCurrentListItems(){
         //Make sure it is the most up to date version
         currentList = dao.loadList(currentList.getId());
-        return currentList.getAllListItems();
+
+        List<ListItem> items = currentList.getAllListItems();
+
+        Collections.sort(items);
+
+        return items;
     }
 
     public GroceryList getCurrentList(){
