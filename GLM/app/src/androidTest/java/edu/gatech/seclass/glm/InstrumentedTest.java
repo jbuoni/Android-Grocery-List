@@ -372,6 +372,13 @@ public class InstrumentedTest {
         String itemName = "Test Item " + System.currentTimeMillis();
         List<ItemType> testItemTypeList = daoi.getAllItemTypes();
         Item item = daoi.createNewItem(itemName, testItemTypeList.get(0).getId());
+
+        String itemName2 = "Test Item 2 " + System.currentTimeMillis();
+        Item item2 = daoi.createNewItem(itemName2, testItemTypeList.get(1).getId());
+
+        String itemName3 = "Test Item 3 " + System.currentTimeMillis();
+        Item item3 = daoi.createNewItem(itemName3, testItemTypeList.get(2).getId());
+
         List<Item> itemsByType = daoi.getItemsByItemType(testItemTypeList.get(0));
 
         boolean itemFound = false;
@@ -383,6 +390,35 @@ public class InstrumentedTest {
             }
 
         }
+
+        assertTrue(itemFound);
+
+        itemsByType = daoi.getItemsByItemType(testItemTypeList.get(1));
+
+        itemFound = false;
+        for (Item i:itemsByType)
+        {
+            if (i.getName().equals(itemName2))
+            {
+                itemFound = true;
+            }
+
+        }
+
+        assertTrue(itemFound);
+
+        itemsByType = daoi.getItemsByItemType(testItemTypeList.get(2));
+
+        itemFound = false;
+        for (Item i:itemsByType)
+        {
+            if (i.getName().equals(itemName3))
+            {
+                itemFound = true;
+            }
+
+        }
+
         assertTrue(itemFound);
 
     }

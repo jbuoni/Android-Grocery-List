@@ -223,7 +223,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 "=LI." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
                 " LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " as IT ON " +
                 "IT." + DatabaseContract.ItemTypeEntry._ID +
-                "=I." + DatabaseContract.ItemEntry._ID +
+                "=I." + DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN +
                 " WHERE GL." + DatabaseContract.GroceryListEntry._ID + "=" + String.valueOf(id), null);
 
         //get the GroceryList
@@ -309,6 +309,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     @Override
     public Item createNewItem(String itemName, Integer itemTypeID) {
+
         // Gets the data repository in write mode, add the list and return the GroceryList object
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
