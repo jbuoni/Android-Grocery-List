@@ -102,6 +102,24 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         values = new ContentValues();
         values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Cereal");
         long cerealItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Fruit");
+        long fruidItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Meat");
+        long meatItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Cheese");
+        long cheeseItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Bread");
+        long breadItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Cake");
+        long cakeItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemTypeEntry.NAME_COLUMN, "Cookies");
+        long cookiesItemTypeID = db.insert(DatabaseContract.ItemTypeEntry.TABLE_NAME, null, values);
 
         //insert some Items
         values = new ContentValues();
