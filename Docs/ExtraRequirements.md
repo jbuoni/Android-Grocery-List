@@ -2,7 +2,7 @@
 
 ###Usability
 1. The application should be usable by all users who can comprehend English. We will not be supporting other languages. 
-2. The application should be easy to navigate, and users should be able to use the application with little to know training.
+2. The application should be easy to navigate, and users should be able to use the application with little to no know training.
 3. The user should be able to easily add items to the item database (linked to types).
 4. User should be able to easily open and close the application.
 
