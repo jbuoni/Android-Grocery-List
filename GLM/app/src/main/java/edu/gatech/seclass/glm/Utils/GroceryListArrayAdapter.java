@@ -117,14 +117,14 @@ public class GroceryListArrayAdapter extends BaseAdapter {
 
                     final EditText groceryListNameEditText = (EditText) dialogView.findViewById(R.id.groceryListName);
                     //Set as to previous name
-                    groceryListNameEditText.setText(groceryListNameEditText.getText().toString());
+                    groceryListNameEditText.setHint(groceryListNameEditText.getText().toString());
 
-                    dialogBuilder.setTitle("Edit Grocery List");
-                    dialogBuilder.setMessage("Update grocery list name below");
-                    dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    dialogBuilder.setTitle(R.string.edit_list_name);
+                    dialogBuilder.setMessage(R.string.edit_list_name_inst);
+                    dialogBuilder.setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int buttonVal) {
                             if(groceryListNameEditText.getText().toString().isEmpty()) {
-                                Toast toast = Toast.makeText(context.getApplicationContext(), "Please enter a grocery list name", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(context.getApplicationContext(), R.string.list_error_1, Toast.LENGTH_LONG);
                                 toast.show();
                             } else {
                                 listController.updateListName(groceryLists.get(position), groceryListNameEditText.getText().toString());
@@ -133,7 +133,7 @@ public class GroceryListArrayAdapter extends BaseAdapter {
                             }
                         }
                     });
-                    dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int buttonVal) {
                             dialog.dismiss();
                         }

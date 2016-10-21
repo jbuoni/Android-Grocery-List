@@ -19,5 +19,12 @@
     <string name="grocery_lists_title">My Lists</string>
     <string name="back">Back</string>
     <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="create_grocery_list">Create Grocery List</string>
+    <string name="enter_list_name">Enter grocery list name below</string>
     <string name="select_list">Select Grocery List</string>
+    <string name ="edit_list_name">Edit List Name</string>
+    <string name ="edit_list_name_inst">Update grocery list name below</string>
+    <string name ="list_error_1">No item name specified.</string>
 </resources>

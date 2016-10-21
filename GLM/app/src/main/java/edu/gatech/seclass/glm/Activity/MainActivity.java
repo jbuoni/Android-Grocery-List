@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText groceryListEditText = (EditText) dialogView.findViewById(R.id.groceryListName);
 
-        dialogBuilder.setTitle("Create Grocery List");
-        dialogBuilder.setMessage("Enter grocery list name below");
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setTitle(R.string.create_grocery_list);
+        dialogBuilder.setMessage(R.string.enter_list_name);
+        dialogBuilder.setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int buttonVal) {
                 if(groceryListEditText.getText().toString().isEmpty()) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Please enter a grocery list name", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.list_error_1, Toast.LENGTH_LONG);
                     toast.show();
                 } else {
                     controller.createList(groceryListEditText.getText().toString());
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int buttonVal) {
                 dialog.dismiss();
             }
