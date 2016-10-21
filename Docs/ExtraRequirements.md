@@ -14,7 +14,7 @@
 ###Maintainability
 1. Application should be easy to maintain if future releases are desired.
 2. Code base should be well documented. 
-3. Application should include README.md
+3. Application should include UserManual.md
 
 #Other Requirements 
 1. The application only needs to support 1 user. 
