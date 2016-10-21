@@ -12,7 +12,7 @@ Click on app icon to open app And you will be taken to Main screen which is will
 ###List Screen###
 1. __Delete an item from list__: Press the trash icon next to any of the items in the list to delete an item.
 
-2. __Change quantity of item on list __: Click on the current quantity, and then enter the new desired quantity.
+2. __Change quantity of item on list__: Click on the current quantity, and then enter the new desired quantity.
 
 3. __Check item off on list__: Press on box to the left of an item to check off and item on list.
 
