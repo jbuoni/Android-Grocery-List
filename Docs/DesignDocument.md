@@ -63,6 +63,6 @@ The Sequence diagram covers some of the basic functions of the GLM application, 
 ## 4 User Interface Design
 The four GUI screens that make up the application are shown in the following image.  The first screen shows the "My Lists" page, which contains all of the user's grocery lists.  The user can add a list, delete lists, open a list to view or edit from this activity.  The second screen shows the list management screen where the user can check and uncheck item and delete or add items.  The third screen shows the search items page.  Here, the user can search for an item to add it to the list or create a new item.  The fourth screen shows the page where a user can add an item by item type to a list.
 
-###[GUI Design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/GUIScreens.png)
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/GUIScreens.png "GUI Design")
+###[GUI Design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/FullGUI.PNG)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/FullGUI.PNG "GUI Design")
 
