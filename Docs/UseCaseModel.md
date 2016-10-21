@@ -60,12 +60,17 @@
 	-Post Conditions: The user is able to find the item they had in mind.
 	-Scenario(s): A user wants to know what type of cheese to buy for their lasagna. The user opens the application and uses the search item by type functionality. The user is able to look at a list of categories, and taps on dairy. The user is able to locate various cheeses available and selects the appropriate one.
 
+
 6) Search Item By Name
 	-Requirements: This use case must allow the user to be able to search for a particular item by it's name.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
 	-Post Conditions: The user is able to find the item they had in mind.
 	-Scenario(s): A user want's to find a particular toothpaste made by Colgate. The user opens the application and uses the search item by name functionality. The user types in Colgate into the search menu and a list of matching items appear. The user is able to identify the particular Colgate Extreme White product that they were looking for.
+	-Steps:
+		1. User clicks on spyglass icon in top right of app.
+		2. User begins searching for item name.
+		3. User clicks on item they would like to add to list.
 
 7) Check / Uncheck Item
 	-Requirements: This use case must allow the user to checkoff particular items on a designated grocery list.
@@ -87,9 +92,10 @@
 	-Post Conditions: All items are unchecked and the database is updated for those items. 
 	-Scenario(s): The user goes to a grocery store and pulls out the application. The user views the list of their choice and views the items on it. After picking up an item from the store, the application lets the user check it off the specified list.
 	- Steps: 
-		1. User clicks 'Uncheck All' button.
-		2. Application unchecks all items in list. 
-		2. Application updates database with unchecked values for all items.
+		1. User clicks on three dots in top right of app.
+		2. User selects 'Uncheck All' from list.
+		3. Application unchecks all items in list. 
+		4. Application updates database with unchecked values for all items.
 
 9) Update Item Quantity
 	-Requirements: This use case must allow the user to checkoff particular items on a designated grocery list.
