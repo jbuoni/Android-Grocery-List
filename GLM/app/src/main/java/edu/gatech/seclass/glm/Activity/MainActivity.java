@@ -22,7 +22,7 @@ import edu.gatech.seclass.glm.Utils.GroceryListArrayAdapter;
 public class MainActivity extends AppCompatActivity {
 
     private GroceryListArrayAdapter groceryListArrayAdapter;
-    private ListController listController;
+    private ListController controller;
     private List<GroceryList> groceryLists;
     private int listCount = 0;
 
@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listController = new ListController(this.getApplicationContext());
-        groceryLists = listController.getAllLists();
+        controller = new ListController(this.getApplicationContext());
+        groceryLists = controller.getAllLists();
 
-        groceryListArrayAdapter = new GroceryListArrayAdapter(this, groceryLists, listController);
+        groceryListArrayAdapter = new GroceryListArrayAdapter(this, groceryLists, controller);
 
         ListView groceryListView = (ListView) findViewById(R.id.groceryListContainer);
         groceryListView.setAdapter(groceryListArrayAdapter);
@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Please enter a grocery list name", Toast.LENGTH_LONG);
                     toast.show();
                 } else {
-                    listController.createList(groceryListEditText.getText().toString());
+                    controller.createList(groceryListEditText.getText().toString());
                     //Safer method when using listAdapters so that the object remains the same
                     groceryLists.clear();
-                    groceryLists.addAll(listController.getAllLists());
+                    groceryLists.addAll(controller.getAllLists());
                     groceryListArrayAdapter.notifyDataSetChanged();
                     dialog.dismiss();
                     listCount++;

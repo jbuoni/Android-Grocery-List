@@ -10,6 +10,7 @@ import edu.gatech.seclass.glm.Model.Item;
 import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 import edu.gatech.seclass.glm.DAO.DAO;
+import edu.gatech.seclass.glm.DAO.DAOI;
 
 /**
  * ListMgmtController handles all communication between the current grocery list, and the UI
@@ -23,7 +24,7 @@ public class ListMgmtController {
     /** Current grocery list */
     private GroceryList currentList;
     /** Database object */
-    private DAO dao;
+    private DAOI dao;
 
     /**
      * Constructor

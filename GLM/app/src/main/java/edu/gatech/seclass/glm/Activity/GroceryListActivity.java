@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
 
 import java.util.List;
@@ -23,10 +22,9 @@ import edu.gatech.seclass.glm.Utils.ItemArrayAdapter;
 
 public class GroceryListActivity extends AppCompatActivity {
 
-    public static final int ADDRQ = 100;
     private ItemArrayAdapter listAdapter;
     private List<ListItem> listItems;
-    private ListMgmtController groceryListController;
+    private ListMgmtController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +32,13 @@ public class GroceryListActivity extends AppCompatActivity {
         setContentView(R.layout.grocery_list);
 
         //Load grocery lists
-        groceryListController = new ListMgmtController(this.getApplicationContext());
-        groceryListController.updateCurrentList(((GroceryList)getIntent().getSerializableExtra("GroceryList")).getId());
-        listItems = groceryListController.getCurrentListItems();
+        controller = new ListMgmtController(this.getApplicationContext());
+        controller.updateCurrentList(((GroceryList)getIntent().getSerializableExtra("GroceryList")).getId());
+        listItems = controller.getCurrentListItems();
 
         //Auto update the list view
         ListView lv = (ListView)findViewById(R.id.listItemContainer);
-        listAdapter = new ItemArrayAdapter(this, listItems, groceryListController);
+        listAdapter = new ItemArrayAdapter(this, listItems, controller);
         lv.setAdapter(listAdapter);
 
         generateListItemViews();
@@ -75,25 +73,25 @@ public class GroceryListActivity extends AppCompatActivity {
 
     private void searchItem(){
         Intent intent = new Intent(this, SearchItemActivity.class);
-        intent.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        intent.putExtra("groceryListID", controller.getCurrentList().getId());
         startActivity(intent);
     }
 
     private void addItem(){
         Intent intentAddAct = new Intent(this, AddItemActivity.class);
-        intentAddAct.putExtra("groceryListID", groceryListController.getCurrentList().getId());
+        intentAddAct.putExtra("groceryListID", controller.getCurrentList().getId());
         startActivity(intentAddAct);
     }
 
     private void uncheckAllItems(){
-        groceryListController.uncheckAllListItems();
+        controller.uncheckAllListItems();
         generateListItemViews();
     }
 
     private void generateListItemViews() {
         //Better way when using ArrayAdapters. Keeps object reference the same.
         listItems.clear();
-        listItems.addAll(groceryListController.getCurrentListItems());
+        listItems.addAll(controller.getCurrentListItems());
         listAdapter.notifyDataSetChanged();
     }
 

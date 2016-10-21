@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
+import edu.gatech.seclass.glm.DAO.DAOI;
 import edu.gatech.seclass.glm.DAO.DAO;
 import edu.gatech.seclass.glm.Model.GroceryList;
 
@@ -16,7 +17,7 @@ import edu.gatech.seclass.glm.Model.GroceryList;
 
 public class ListController {
 
-    private DAO dao;
+    private DAOI dao;
 
     public ListController(Context context) {
         dao = new DAO(context);
