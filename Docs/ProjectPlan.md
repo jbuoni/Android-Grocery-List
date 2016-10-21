@@ -73,6 +73,26 @@ Add Item To List
 **Exit Criteria**
 The item quanitity for specified item is updated with the new inputted value. 
 
+###Uncheck All Items
+**Description**
+The user unchecks all item on their grocery list after they've been added to a particular list.
+
+**Entrance Criteria**
+Create Grocery List Add Item To List
+
+**Exit Criteria**
+The output of this is that all items in a particular list are unchecked.
+
+###Search Item
+**Description**
+Users can search for a particular item to add to a particular grocery list.
+
+**Entrance Criteria** 
+Create Grocery List
+
+**Exit Criteria**
+The result of this is that Users are able to identify an item to add to a grocery list.
+
 ### Delete Grocery List
 **Description**
 Users can remove a grocery list from the application after usage. 
