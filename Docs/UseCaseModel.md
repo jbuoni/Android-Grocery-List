@@ -38,7 +38,7 @@
 		1. User clicks 'View/Edit' button
 		2. Application navigates to GroceryList activity and displays list data for the selected list.
 
-4) Add Item
+4) Add Item to List
 	-Requirements: This use case must allow the user to make changes to his or her pre-existing list.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
@@ -53,15 +53,7 @@
 		3. User clicks add item button.
 		4. Application saves item in database and links it to grocery list and closes dialog.
 
-5) Search Item By Type
-	-Requirements: This use case must allow the user to be able to search for a particular item by it's item type/category.
-	-Pre Conditions: User must have already completed Create Grocery List use case. 
-		- User must have already completed Select Grocery List use case.
-	-Post Conditions: The user is able to find the item they had in mind.
-	-Scenario(s): A user wants to know what type of cheese to buy for their lasagna. The user opens the application and uses the search item by type functionality. The user is able to look at a list of categories, and taps on dairy. The user is able to locate various cheeses available and selects the appropriate one.
-
-
-6) Search Item By Name
+5) Search for Item
 	-Requirements: This use case must allow the user to be able to search for a particular item by it's name.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
@@ -72,7 +64,7 @@
 		2. User begins searching for item name.
 		3. User clicks on item they would like to add to list.
 
-7) Check / Uncheck Item
+6) Check / Uncheck Item
 	-Requirements: This use case must allow the user to checkoff particular items on a designated grocery list.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
@@ -83,7 +75,7 @@
 		1. User clicks checkbox next to item they which to check / uncheck
 		2. Application updates database with check value
 
- 8) Uncheck All Items
+ 7) Uncheck All Items
 	-Requirements: This use case must allow the user to checkoff particular items on a designated grocery list.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
@@ -97,7 +89,7 @@
 		3. Application unchecks all items in list. 
 		4. Application updates database with unchecked values for all items.
 
-9) Update Item Quantity
+8) Update Item Quantity
 	-Requirements: This use case must allow the user to checkoff particular items on a designated grocery list.
 	-Pre Conditions: User must have already completed Create Grocery List use case. 
 		- User must have already completed Select Grocery List use case.
@@ -106,9 +98,15 @@
 	-Post Conditions: Quantity for specific item is updated in the database and application 
 	-Scenario(s): Before going to a grocery store, the user notices they need more of an item than expected. The user updates the item of their choice with the new quantity, after selecting the appropriate list. After updating the quantity, the application displays the new updated quantity associated with the item.
 	- Steps: 
-		1. User clicks on item they wish to update quantity.
+		1. User clicks in space to the right of the item name.
 		2. Dialog prompts user to update quantity.
 		3. User updates quantity 
-		4. User clicks 'Update Quantity' button
+		4. User clicks 'next' button.
 		5. Application updates quantity and closes dialog. 
+
+9 Edit Grocery List Name:
+	-Requirements: This use case must allow the user to change the name of a pre-exisiting grocery list.
+	-Pre Conditions: User must have already completed grocery list use case.
+	-Post Conditions: The name of the grocery list will be updated in the database and the application.
+	-Scenario(s): Before going to the grocery store the user realizes that the name of the gorcery list no longer makes sense. The user updated the list name that needs to be dupdated to make sense. The application then updates the list name accordingly. 
 
