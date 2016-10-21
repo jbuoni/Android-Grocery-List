@@ -104,9 +104,23 @@
 		4. User clicks 'next' button.
 		5. Application updates quantity and closes dialog. 
 
-9 Edit Grocery List Name:
+9. Edit Grocery List Name:
 	-Requirements: This use case must allow the user to change the name of a pre-exisiting grocery list.
 	-Pre Conditions: User must have already completed grocery list use case.
 	-Post Conditions: The name of the grocery list will be updated in the database and the application.
-	-Scenario(s): Before going to the grocery store the user realizes that the name of the gorcery list no longer makes sense. The user updated the list name that needs to be dupdated to make sense. The application then updates the list name accordingly. 
+	-Scenario(s): Before going to the grocery store the user realizes that the name of the gorcery list no longer makes sense. The user updated the list name that needs to be dupdated to make sense. The application then updates the list name accordingly.
+	-Steps:
+		1. User clicks on the Grocery List name that needs to be updated.
+		2. User types the new grocery list name in and clicks 'done'.
+		3. Application updates the grocery list name accordingly.
+
+10.Remove Item from List:
+	-Requirements: This use case must allow the user to remove an item from the grocery list.
+	-Pre Conditions: User must have already completed grocery list use case.
+	-Post Conditions: The item chosen will be deleted from the list.
+	-Scenario(s): User no longer wants item to be included from list that once was needed. The user will easily remove the item and update the list.
+	-Steps:
+		1. User clicks on the trashcan to the right of the item of interest.
+		2. Item is deleted off of the grocery list.
+		3. Application updates the grocery list accordingly.
 

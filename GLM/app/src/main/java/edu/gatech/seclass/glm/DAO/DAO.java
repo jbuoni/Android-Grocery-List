@@ -421,7 +421,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 DatabaseContract.ItemEntry.TABLE_NAME +
                 " AS I LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
                 " IT." + DatabaseContract.ItemTypeEntry._ID +
-                "= I." + DatabaseContract.ItemEntry._ID +
+                "= I." + DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN +
                 " WHERE I." + DatabaseContract.ItemEntry.NAME_COLUMN + " LIKE '%" + searchString + "%'", null);
 
         //put the results in a List of Items
@@ -518,7 +518,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 DatabaseContract.ItemEntry.TABLE_NAME +
                 " AS I JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " AS IT ON " +
                 " IT." + DatabaseContract.ItemTypeEntry._ID +
-                "= I." + DatabaseContract.ItemEntry._ID +
+                "= I." + DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN +
                 " WHERE I." + DatabaseContract.ItemEntry._ID + "=" + id, null);
 
         //get the Item
@@ -652,7 +652,7 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 "=LI." + DatabaseContract.ListItemEntry.ITEM_COLUMN +
                 " LEFT OUTER JOIN " + DatabaseContract.ItemTypeEntry.TABLE_NAME + " as IT ON " +
                 "IT." + DatabaseContract.ItemTypeEntry._ID +
-                "=I." + DatabaseContract.ItemEntry._ID + " ORDER BY GL." +
+                "=I." + DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN + " ORDER BY GL." +
                 DatabaseContract.ItemTypeEntry._ID, null);
 
         //get the GroceryList
