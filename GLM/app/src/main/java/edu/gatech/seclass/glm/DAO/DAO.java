@@ -15,12 +15,13 @@ import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 
 /**
+ * Implementation of the DAO interface.
  * Created by danielbansch on 10/8/16.
  */
 
 public class DAO extends SQLiteOpenHelper implements DAOI {
 
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "GroceryListManager.db";
     public static final String TEXT_TYPE = " TEXT";
 
@@ -150,6 +151,31 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Frosted Flakes");
         values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, cerealItemTypeID);
         long frostedFlakesItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Grapes");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, fruidItemTypeID);
+        long grapesItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Wheat Bread");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, breadItemTypeID);
+        long wheatBreadItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Chocolate Cake");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, cakeItemTypeID);
+        long chocolateCakeItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Oreos");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, cookiesItemTypeID);
+        long oreoItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Pepperjack Cheese");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, cheeseItemTypeID);
+        long pepperjackCheeseItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+        values = new ContentValues();
+        values.put(DatabaseContract.ItemEntry.NAME_COLUMN, "Steak");
+        values.put(DatabaseContract.ItemEntry.ITEM_TYPE_COLUMN, meatItemTypeID);
+        long steakCheeseItemID = db.insert(DatabaseContract.ItemEntry.TABLE_NAME, null, values);
+
 
         //create some list items
         values = new ContentValues();
@@ -179,6 +205,12 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Run when the database version is updated.
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop the tables and call onCreate to recreate the database
@@ -189,6 +221,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         onCreate(db);
     }
 
+    /**
+     * Update a GroceryList's name in the database.
+     * @param groceryList: The grocery list to be updated.
+     * @param name: Name of grocery list
+     */
     @Override
     public void updateListName(GroceryList groceryList, String name) {
         // Gets the data repository in write mode
@@ -207,6 +244,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Insert a new GroceryList into the database.
+     * @param name: The name of the new GroceryList.
+     * @return
+     */
     @Override
     public GroceryList createList(String name) {
         // Gets the data repository in write mode, add the list and return the GroceryList object
@@ -218,6 +260,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         return groceryList;
     }
 
+    /**
+     * Load a grocery list from the database.
+     * @param id: The id of the grocery list to be loaded.
+     * @return The loaded grocery list.
+     */
     @Override
     public GroceryList loadList(Integer id) {
 
@@ -282,6 +329,13 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         return groceryList;
     }
 
+    /**
+     * Add a ListItem to a GroceryList.
+     * @param groceryListID: The GroceryList's ID.
+     * @param itemID: The ID of the new ListItem's item.
+     * @param quantity: The quantity of the ListItem.
+     * @return The new ListItem.
+     */
     @Override
     public ListItem addItemToList(Integer groceryListID, Integer itemID, Integer quantity) {
 
@@ -298,6 +352,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Delete a GroceryList.
+     * @param id: The id of the GroceryList to delete.
+     */
     @Override
     public void deleteList(Integer id) {
 
@@ -325,6 +383,12 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
                 selectionArgsGL);
     }
 
+    /**
+     * Insert a new Item in the database.
+     * @param itemName: The name of the Item.
+     * @param itemTypeID: The ItemType id of the new item.
+     * @return The new Item.
+     */
     @Override
     public Item createNewItem(String itemName, Integer itemTypeID) {
 
@@ -338,6 +402,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         return item;
     }
 
+    /**
+     * Search for Items by name.
+     * @param searchString: The string to search for.
+     * @return A List<Item> containing the found Items.
+     */
     @Override
     public List<Item> findItemsLike(String searchString) {
 
@@ -378,6 +447,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Return all of the Items of a given ItemType.
+     * @param itemType: The ItemType of the Items to return.
+     * @return A List<Item> that have the given ItemType.
+     */
     @Override
     public List<Item> getItemsByItemType(ItemType itemType) {
 
@@ -426,6 +500,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Returns Item associated with the ID param
+     * @param id ID of the item
+     * @return
+     */
     private Item getItemByID(Integer id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -462,6 +541,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Returns ItemType for associated ID
+     * @param id ID of the Item
+     * @return
+     */
     private ItemType getItemTypeByID(Integer id) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -506,6 +590,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Retrieve all of the ItemTypes from the database.
+     * @return A List<ItemType> containing all of the ItemTypes in the db.
+     */
     @Override
     public List<ItemType> getAllItemTypes() {
 
@@ -536,6 +624,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Retrieve all of the GroceryLists from the database.
+     * @return A List<GroceryList> containing all of the GroceryLists in the db.
+     */
     @Override
     public List<GroceryList> getAllLists() {
 
@@ -613,6 +705,11 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
         return groceryLists;
     }
 
+    /**
+     * Set the isChecked value of a ListItem.
+     * @param listItemID: The ID of the ListItem to toggle.
+     * @param checked: The isChecked value to set.
+     */
     @Override
     public void toggleListItemIsChecked(Integer listItemID, boolean checked) {
 
@@ -632,6 +729,10 @@ public class DAO extends SQLiteOpenHelper implements DAOI {
 
     }
 
+    /**
+     * Delete a ListItem from a GroceryList
+     * @param listItemID: The ID of the ListItem to be Deleted.
+     */
     @Override
     public void deleteItemFromList(Integer listItemID) {
 

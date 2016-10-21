@@ -1,0 +1,189 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><help_text>Namece for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>330</x><y>200</y><w>220</w><h>230</h></coordinates><panel_attributes>GroceryList
+--
+-name: String
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getID(): Integer
++getAllListItems(): List&lt;ListItem&gt;
++getListItemByID(id: Integer): ListItem
++addListItem(item: Item)
++removeListItemById(id: Integer)
++uncheckAllListItems()
++checkListItemById(id: Integer)
++sortListByItemType()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>200</y><w>200</w><h>250</h></coordinates><panel_attributes>ListItem
+--
+-isChecked: boolean
+-quantity: Integer
+-id: Integer
+--
++getName(): String
++setName(name: String)
++getQuantity(): Integer
++setQuantity(qty: Integer)
++getItem(): Item
++setItem(item: Item)
++getID(id: Integer)
++setIsChecked(checked: boolean)
++getIsChecked():boolean
++compareTo(ListItem item): int
++toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>520</y><w>180</w><h>150</h></coordinates><panel_attributes>Item
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
++getType(): ItemType
++setType(itemType: ItemType)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>530</y><w>200</w><h>130</h></coordinates><panel_attributes>ItemType
+--
+-id: Integer
+-name: String
+--
++getName(): String
++setName(name: String)
++getID(id: Integer)
++compareTo(item: ItemType): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>637</y><w>290</w><h>140</h></coordinates><panel_attributes>GroceryListActivity
+--
+--
++onCreate(savedInstanceState: Bundle): void
++onCreateOptionsMenu(menu: Menu): boolean
++onOptionsItemSelected(item: MenuItem): boolean
+-searchItem(): void
+-addItem(): void
+-uncheckAllItems(): void
+-generateListItemViews(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>837</y><w>300</w><h>140</h></coordinates><panel_attributes>SearchItemActivity
+--
+-arrayItems: ArrayList&lt;String&gt;
+-listAdapter: ArrayAdapter&lt;String&gt;
+--
++onCreate(savedInstanceState: Bundle): void
++onCreateOptionsMenu(menu: Menu): boolean
++onOptionsItemSelected(item: MenuItem): boolean
+-addNewItem(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1200</x><y>837</y><w>300</w><h>160</h></coordinates><panel_attributes>AddNewItemActivity
+--
+-sp_type: Spinner
+-itemNameEditText: EditText
+-itemQuantityEditText: EditText
+--
++onCreate(savedInstanceState: Bundle): void
++onCreateOptionsMenu(menu: Menu): boolean
++onOptionsItemSelected(item: MenuItem): boolean
+-addNewItem(): void
+-makeToast(text: String):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>890</x><y>837</y><w>300</w><h>170</h></coordinates><panel_attributes>AddItemActivity
+--
+-sp_type: Spinner
+-sp_item: Spinner
+-itemNameEditText: EditText
+-itemQuantityEditText: EditText
+--
++onCreate(savedInstanceState: Bundle): void
++onCreateOptionsMenu(menu: Menu): boolean
++onOptionsItemSelected(item: MenuItem): boolean
+-addNewItem(): void
+-makeToast(text: String):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>657</y><w>300</w><h>120</h></coordinates><panel_attributes>MainActivity
+--
+-listCount: int
+--
++onCreate(savedInstanceState: Bundle): void
++onCreateOptionsMenu(menu: Menu): boolean
++onOptionsItemSelected(item: MenuItem): boolean
+-addList(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1100</x><y>271</y><w>290</w><h>90</h></coordinates><panel_attributes>ListMgmtController
+--
+--
+public ListMgmtController(Context context)
++updateCurrentList(int listId): void
++getCurrentListItems(): List&lt;ListItem&gt; 
++getCurrentList(): GroceryList
++toggleCheck(ListItem item): void
++uncheckAllListItems(): void
++addListItem(ListItem item): void
++addListItem(Integer groceryListID, Integer itemID, Integer quantity): void
++removeListItem(ListItem item): void
++updateItem(ListItem item): void
++searchForItem(String searchText): List&lt;Item&gt;
++getAllItemTypes(): List&lt;ItemType&gt;
++getAllItemsByType(ItemType type): List&lt;Item&gt;
++addNewItemToDB(String itemName, Integer itemTypeID): Item</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>271</y><w>340</w><h>110</h></coordinates><panel_attributes>ListController
+--
+--
++createList(String name):void
++getAllLists(): List&lt;GroceryList&gt;
++deleteList (Integer id):void
++updateListName(GroceryList groceryList, String name): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>820</x><y>0</y><w>460</w><h>230</h></coordinates><panel_attributes>&lt;&lt;inteface&gt;&gt;
+DAOI
+--
+--
++updateListName(GroceryList groceryList, String name): void
++createList(String name): GroceryList
++loadList(Integer id): GroceryList
++addItemToList(Integer groceryListID, Integer itemID, Integer quantity): ListItem
++deleteList(Integer id): void
++createNewItem(String itemName, Integer itemTypeID): Item
++findItemsLike(String searchString): List&lt;Item&gt;
++getItemsByItemType(ItemType itemType): List&lt;Item&gt;
++getAllItemTypes(): List&lt;ItemType&gt;
++getAllLists(): List&lt;GroceryList&gt;
++toggleListItemIsChecked(Integer listItemID, boolean checked): void
++deleteItemFromList(Integer listItemID): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1360</x><y>350</y><w>110</w><h>510</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>10;10;80;120;80;490</additional_attributes></element><element><id>Relation</id><coordinates><x>1350</x><y>350</y><w>70</w><h>310</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>10;10;10;290</additional_attributes></element><element><id>Relation</id><coordinates><x>1070</x><y>350</y><w>110</w><h>510</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>90;10;10;100;10;490</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>350</y><w>580</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+currentList</panel_attributes><additional_attributes>10;70;520;70;560;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1190</x><y>220</y><w>50</w><h>70</h></coordinates><panel_attributes>lt=&lt;-
+dao</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>870</x><y>220</y><w>50</w><h>70</h></coordinates><panel_attributes>lt=&lt;-
+dao</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>81</y><w>280</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>260;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>290</x><y>150</y><w>30</w><h>400</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;380;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>150</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>233</x><y>281</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..n</panel_attributes><additional_attributes>100;20;10;19</additional_attributes></element><element><id>Relation</id><coordinates><x>193</x><y>571</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=1</panel_attributes><additional_attributes>10;20;97;19</additional_attributes></element><element><id>Relation</id><coordinates><x>83</x><y>441</y><w>50</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=1</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>150</y><w>210</w><h>390</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>40;370;10;310;10;40;190;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>61</y><w>120</w><h>70</h></coordinates><panel_attributes>DatabaseContract
+--
+
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>20</y><w>400</w><h>140</h></coordinates><panel_attributes>DAO
+--
++DATABASE_VERSION: int
++DATABASE_NAME: String
++TEXT_TYPE: String
+--
++onCreate(db: SQLiteDatabase): void
++onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion): void
+-getItemByID(Integer id): Item
+-getItemTypeByID(Integer id): ItemType</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>130</x><y>110</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>150</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>310</y><w>910</w><h>730</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>720;10;850;40;850;710;160;710;10;670</additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>370</y><w>70</w><h>310</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>10;10;10;290</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>340</y><w>190</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>441</y><w>230</w><h>140</h></coordinates><panel_attributes>GroceryListArrayAdapter
+--
+-context: Context
+-inflater: LayoutInflater
+--
++getCount(): int
++getItem(int position): Object
++getItemId(int position): long
++getView(final int position, View 
+convertView, ViewGroup parent): View</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>370</y><w>100</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+listController</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1110</x><y>432</y><w>230</w><h>170</h></coordinates><panel_attributes>ItemArrayAdapter
+--
+- List&lt;ListItem&gt; items;
+-context: Context
+-inflater: LayoutInflater
+- ListMgmtController controller;
+--
++getCount(): int
++getItem(int position): Object
++getItemId(int position): long
++getView(final int position, View 
+convertView, ViewGroup parent): View</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>422</y><w>300</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+groceryLists</panel_attributes><additional_attributes>280;110;60;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>590</y><w>1050</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+items</panel_attributes><additional_attributes>1030;10;460;10;460;110;10;110;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1230</x><y>350</y><w>70</w><h>100</h></coordinates><panel_attributes>lt=&lt;-
+contoller</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1280</x><y>590</y><w>90</w><h>70</h></coordinates><panel_attributes>lt=&lt;-
+listAdapter</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>570</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>650</y><w>910</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+curItemTypes</panel_attributes><additional_attributes>890;190;790;150;10;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>660</y><w>1070</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+listItems</panel_attributes><additional_attributes>1050;180;990;160;10;160;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>790</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>440</y><w>910</w><h>220</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+listItems</panel_attributes><additional_attributes>890;200;820;180;360;180;280;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>422</y><w>300</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+groceryLists</panel_attributes><additional_attributes>280;300;150;300;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>660</y><w>560</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+items</panel_attributes><additional_attributes>540;250;10;250;10;10</additional_attributes></element></diagram>
