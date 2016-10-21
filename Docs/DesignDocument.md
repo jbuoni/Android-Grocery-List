@@ -31,8 +31,10 @@ the application. The application will store data in an SQLite database packaged 
 
 The Component Diagram is shown in the following image.  The four user interfaces of the application are shown on the left hand side.  They connect to the android Activity components of the application.  The Activities all connect to the Model component through the DAOI interface.  The Model connects to the GroceryListDB sqlite database through JDBC.
 
-###[Component Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/ComponentDiagram.png)
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/ComponentDiagram.png "Component Diagram")
+The changes to made to the component diagram in version 2 include adding the AddNewItem UI and Activity and adding interface symbols to the diagram.
+
+###[Component Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v2_ComponentDiagram.png)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v2_ComponentDiagram.png "Component Diagram")
 
 ### 2.2 Deployment Diagram
 
