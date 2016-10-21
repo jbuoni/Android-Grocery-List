@@ -42,10 +42,10 @@ A Deployment Diagram is not necessary for this application.  There is only one n
 
 ### 3.1 Class Diagram
 
-The UML class diagram of the system is shown in the following image.  The diagram was modified from the original file (team.png) to make the application android specific.  Controller classes were changed to Activity classes.  Packages were also added to the diagram. 
+The UML class diagram of the system is shown in the following image.  The diagram was modified from the original file (team.png) to make the application android specific.  This included adding activity classes and adapter classes.  A DatabaseContract class was added so that changes to the database such as to table names only have to be made in one class.  
 
-###[Class Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v2_team.png)
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v2_team.png "Class Diagram")
+###[Class Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v3_team.png)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/v3_team.png "Class Diagram")
 
 ### 3.2 Other Diagrams 
 
