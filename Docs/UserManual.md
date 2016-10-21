@@ -1,6 +1,6 @@
 User Manual
 ===========
-1. Click on app icon to open app And you will be taken to Main screen which is will display all current lists you have.
+Click on app icon to open app And you will be taken to Main screen which is will display all current lists you have.
 
 ### Main Screen ###
 1.__Add a list__: Press the circular button with a plus sign in the middle of it in the top right corner to add a new list. This will open up a pop out screen where you can either enter the list name you wish to add and press done, or cancel and don't enter a list.
