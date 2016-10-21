@@ -21,7 +21,7 @@ import edu.gatech.seclass.glm.Model.ListItem;
 
 public class DAO extends SQLiteOpenHelper implements DAOI {
 
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "GroceryListManager.db";
     public static final String TEXT_TYPE = " TEXT";
 
