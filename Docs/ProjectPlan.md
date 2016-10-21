@@ -73,6 +73,17 @@ Add Item To List
 **Exit Criteria**
 The item quanitity for specified item is updated with the new inputted value. 
 
+### Delete Grocery List
+**Description**
+Users can remove a grocery list from the application after usage. 
+
+**Entrance Criteria**
+Create Grocery List
+Add Item To List
+
+**Exit Criteria**
+The grocery list is removed and no longer shows in the list of grocery lists.
+
 ## 3 Team 47
 
 **Jason Buoni**
