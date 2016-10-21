@@ -91,7 +91,7 @@ Users can search for a particular item to add to a particular grocery list.
 Create Grocery List
 
 **Exit Criteria**
-The result of this is that Users are able to identify an item to add to a grocery list.
+The result of this is that Users are able to identify an item to add to a grocery list. 
 
 ### Delete Grocery List
 **Description**
