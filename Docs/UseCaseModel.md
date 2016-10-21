@@ -6,8 +6,8 @@
 
 ## 1 Use Case Diagram
 
-###[Use Case Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/UseCaseDiagram.png)
-![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/UseCaseDiagram.png "Use Case Diagram")
+###[Use Case Diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/CaseDiagram.png)
+![alt text](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team47/blob/master/Images/CaseDiagram.png "Use Case Diagram")
 
 ## 2 Use Case Descriptions
 
