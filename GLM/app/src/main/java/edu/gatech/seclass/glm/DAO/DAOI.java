@@ -8,6 +8,7 @@ import edu.gatech.seclass.glm.Model.ItemType;
 import edu.gatech.seclass.glm.Model.ListItem;
 
 /**
+ * DAO Interface. Interaction between the application and the database are done through the DAO
  * Created by danielbansch on 10/8/16.
  */
 

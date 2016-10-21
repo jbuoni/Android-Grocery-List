@@ -3,6 +3,7 @@ package edu.gatech.seclass.glm.Model;
 import java.io.Serializable;
 
 /**
+ * Item model.
  * Created by danielbansch on 10/8/16.
  */
 
