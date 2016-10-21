@@ -38,32 +38,20 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CreateListTest {
+public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void createListTest() {
+    public void mainActivityTest() {
         ViewInteraction actionMenuItemView = onView(
                 allOf(withId(R.id.add_list), withContentDescription("Add List"), isDisplayed()));
         actionMenuItemView.perform(click());
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.groceryListName), isDisplayed()));
-        appCompatEditText.perform(click());
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.groceryListName), isDisplayed()));
-        appCompatEditText2.perform(click());
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.groceryListName), isDisplayed()));
-        appCompatEditText3.perform(click());
-
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.groceryListName), isDisplayed()));
-        appCompatEditText4.perform(replaceText("Test List"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("Test List"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(android.R.id.button1), withText("Done"),
@@ -71,26 +59,6 @@ public class CreateListTest {
                                 withParent(withClassName(is("android.widget.LinearLayout"))))),
                         isDisplayed()));
         appCompatButton.perform(click());
-
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.groceryListName), withText("Test List"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.groceryListContainer),
-                                        2),
-                                0),
-                        isDisplayed()));
-        textView.check(matches(withText("Test List")));
-
-        ViewInteraction linearLayout = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.groceryListContainer),
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        0)),
-                        2),
-                        isDisplayed()));
-        linearLayout.check(matches(isDisplayed()));
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.editGroceryListButton), withText("View/Edit"),
@@ -109,48 +77,70 @@ public class CreateListTest {
         appCompatSpinner.perform(click());
 
         ViewInteraction appCompatTextView = onView(
-                allOf(withId(android.R.id.text1), withText("Cereal"), isDisplayed()));
+                allOf(withId(android.R.id.text1), withText("Milk"), isDisplayed()));
         appCompatTextView.perform(click());
 
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.aQuant), isDisplayed()));
-        appCompatEditText5.perform(click());
-
-        ViewInteraction appCompatEditText6 = onView(
-                allOf(withId(R.id.aQuant), isDisplayed()));
-        appCompatEditText6.perform(replaceText("3"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText7 = onView(
-                allOf(withId(R.id.aQuant), withText("3"), isDisplayed()));
-        appCompatEditText7.perform(pressImeActionButton());
-
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.addButton), withText("Add New Item"), isDisplayed()));
-        appCompatButton3.perform(click());
-
-        ViewInteraction actionMenuItemView3 = onView(
-                allOf(withId(R.id.back), withContentDescription("Back"), isDisplayed()));
-        actionMenuItemView3.perform(click());
-
-        ViewInteraction actionMenuItemView4 = onView(
-                allOf(withId(R.id.add_item), withContentDescription("Add Item"), isDisplayed()));
-        actionMenuItemView4.perform(click());
-
         ViewInteraction appCompatSpinner2 = onView(
-                allOf(withId(R.id.aspnType), isDisplayed()));
+                allOf(withId(R.id.aspnItem), isDisplayed()));
         appCompatSpinner2.perform(click());
 
         ViewInteraction appCompatTextView2 = onView(
-                allOf(withId(android.R.id.text1), withText("Cereal"), isDisplayed()));
+                allOf(withId(android.R.id.text1), withText("Gallon Skim Milk"), isDisplayed()));
         appCompatTextView2.perform(click());
 
-        ViewInteraction appCompatEditText8 = onView(
+        ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.aQuant), isDisplayed()));
-        appCompatEditText8.perform(replaceText("3"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("1"), closeSoftKeyboard());
 
-        ViewInteraction actionMenuItemView5 = onView(
+        ViewInteraction actionMenuItemView3 = onView(
                 allOf(withId(R.id.add_item), withContentDescription("Add Item"), isDisplayed()));
-        actionMenuItemView5.perform(click());
+        actionMenuItemView3.perform(click());
+
+        ViewInteraction linearLayout = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.listItemContainer),
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        0)),
+                        0),
+                        isDisplayed()));
+        linearLayout.check(matches(isDisplayed()));
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.itemName), withText("Gallon Skim Milk"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.listItemContainer),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.check(matches(withText("Gallon Skim Milk")));
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.itemQuantity), withText("1"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.listItemContainer),
+                                        0),
+                                2),
+                        isDisplayed()));
+        editText2.check(matches(withText("1")));
+
+        ViewInteraction actionMenuItemView4 = onView(
+                allOf(withId(R.id.search), withContentDescription("Search For Item"), isDisplayed()));
+        actionMenuItemView4.perform(click());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.searchBar), isDisplayed()));
+        appCompatEditText3.perform(replaceText("Coors"), closeSoftKeyboard());
+
+        ViewInteraction appCompatTextView3 = onView(
+                allOf(withId(android.R.id.text1), withText("12 Pack of Coors"),
+                        childAtPosition(
+                                withId(R.id.searchResultsListView),
+                                0),
+                        isDisplayed()));
+        appCompatTextView3.perform(click());
 
         ViewInteraction linearLayout2 = onView(
                 allOf(childAtPosition(
@@ -161,56 +151,6 @@ public class CreateListTest {
                         0),
                         isDisplayed()));
         linearLayout2.check(matches(isDisplayed()));
-
-        ViewInteraction editText = onView(
-                allOf(withId(R.id.itemQuantity), withText("3"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.listItemContainer),
-                                        0),
-                                2),
-                        isDisplayed()));
-        editText.check(matches(withText("3")));
-
-        ViewInteraction editText2 = onView(
-                allOf(withId(R.id.itemName), withText("Lucky Charms"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.listItemContainer),
-                                        0),
-                                1),
-                        isDisplayed()));
-        editText2.check(matches(withText("Lucky Charms")));
-
-        ViewInteraction checkBox = onView(
-                allOf(withId(R.id.itemCheckBox),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.listItemContainer),
-                                        0),
-                                0),
-                        isDisplayed()));
-        checkBox.check(matches(isDisplayed()));
-
-        ViewInteraction actionMenuItemView6 = onView(
-                allOf(withId(R.id.add_item), withContentDescription("Add Item"), isDisplayed()));
-        actionMenuItemView6.perform(click());
-
-        ViewInteraction actionMenuItemView7 = onView(
-                allOf(withId(R.id.search), withContentDescription("Search For Item"), isDisplayed()));
-        actionMenuItemView7.perform(click());
-
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.searchBar), isDisplayed()));
-        appCompatEditText9.perform(replaceText("Coor"), closeSoftKeyboard());
-
-        ViewInteraction appCompatTextView3 = onView(
-                allOf(withId(android.R.id.text1), withText("12 Pack of Coors"),
-                        childAtPosition(
-                                withId(R.id.searchResultsListView),
-                                0),
-                        isDisplayed()));
-        appCompatTextView3.perform(click());
 
         ViewInteraction editText3 = onView(
                 allOf(withId(R.id.itemName), withText("12 Pack of Coors"),
@@ -232,45 +172,41 @@ public class CreateListTest {
                         isDisplayed()));
         editText4.check(matches(withText("1")));
 
-        ViewInteraction actionMenuItemView8 = onView(
+        ViewInteraction actionMenuItemView5 = onView(
+                allOf(withId(R.id.search), withContentDescription("Search For Item"), isDisplayed()));
+        actionMenuItemView5.perform(click());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.searchBar), isDisplayed()));
+        appCompatEditText4.perform(replaceText("Granny"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.searchBar), withText("Granny"), isDisplayed()));
+        appCompatEditText5.perform(pressImeActionButton());
+
+        ViewInteraction actionMenuItemView6 = onView(
                 allOf(withId(R.id.add_item), withContentDescription("Add Item"), isDisplayed()));
-        actionMenuItemView8.perform(click());
+        actionMenuItemView6.perform(click());
+
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.itemName), isDisplayed()));
+        appCompatEditText6.perform(replaceText("Granny Smith Apples"), closeSoftKeyboard());
 
         ViewInteraction appCompatSpinner3 = onView(
-                allOf(withId(R.id.aspnItem), isDisplayed()));
+                allOf(withId(R.id.aspnType), isDisplayed()));
         appCompatSpinner3.perform(click());
 
         ViewInteraction appCompatTextView4 = onView(
-                allOf(withId(android.R.id.text1), withText("12 Pack of Bud Light"), isDisplayed()));
+                allOf(withId(android.R.id.text1), withText("Fruit"), isDisplayed()));
         appCompatTextView4.perform(click());
 
-        ViewInteraction appCompatEditText10 = onView(
+        ViewInteraction appCompatEditText7 = onView(
                 allOf(withId(R.id.aQuant), isDisplayed()));
-        appCompatEditText10.perform(replaceText("5"), closeSoftKeyboard());
+        appCompatEditText7.perform(replaceText("5"), closeSoftKeyboard());
 
-        ViewInteraction actionMenuItemView9 = onView(
+        ViewInteraction actionMenuItemView7 = onView(
                 allOf(withId(R.id.add_item), withContentDescription("Add Item"), isDisplayed()));
-        actionMenuItemView9.perform(click());
-
-        ViewInteraction editText5 = onView(
-                allOf(withId(R.id.itemName), withText("12 Pack of Bud Light"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.listItemContainer),
-                                        1),
-                                1),
-                        isDisplayed()));
-        editText5.check(matches(withText("12 Pack of Bud Light")));
-
-        ViewInteraction editText6 = onView(
-                allOf(withId(R.id.itemQuantity), withText("5"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.listItemContainer),
-                                        1),
-                                2),
-                        isDisplayed()));
-        editText6.check(matches(withText("5")));
+        actionMenuItemView7.perform(click());
 
         ViewInteraction linearLayout3 = onView(
                 allOf(childAtPosition(
@@ -278,9 +214,29 @@ public class CreateListTest {
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0)),
-                        1),
+                        2),
                         isDisplayed()));
         linearLayout3.check(matches(isDisplayed()));
+
+        ViewInteraction editText5 = onView(
+                allOf(withId(R.id.itemName), withText("Granny Smith Apples"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.listItemContainer),
+                                        2),
+                                1),
+                        isDisplayed()));
+        editText5.check(matches(withText("Granny Smith Apples")));
+
+        ViewInteraction editText6 = onView(
+                allOf(withId(R.id.itemQuantity), withText("5"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.listItemContainer),
+                                        2),
+                                2),
+                        isDisplayed()));
+        editText6.check(matches(withText("5")));
 
         ViewInteraction appCompatCheckBox = onView(
                 allOf(withId(R.id.itemCheckBox),
@@ -294,25 +250,9 @@ public class CreateListTest {
                 allOf(withId(R.id.itemCheckBox),
                         withParent(childAtPosition(
                                 withId(R.id.listItemContainer),
-                                0)),
-                        isDisplayed()));
-        appCompatCheckBox2.perform(click());
-
-        ViewInteraction appCompatCheckBox3 = onView(
-                allOf(withId(R.id.itemCheckBox),
-                        withParent(childAtPosition(
-                                withId(R.id.listItemContainer),
-                                0)),
-                        isDisplayed()));
-        appCompatCheckBox3.perform(click());
-
-        ViewInteraction appCompatCheckBox4 = onView(
-                allOf(withId(R.id.itemCheckBox),
-                        withParent(childAtPosition(
-                                withId(R.id.listItemContainer),
                                 2)),
                         isDisplayed()));
-        appCompatCheckBox4.perform(click());
+        appCompatCheckBox2.perform(click());
 
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
@@ -320,20 +260,50 @@ public class CreateListTest {
                 allOf(withId(R.id.title), withText("Select Grocery List"), isDisplayed()));
         appCompatTextView5.perform(click());
 
-        ViewInteraction appCompatButton4 = onView(
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.groceryListName), withText("Test List"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.groceryListContainer),
+                                        2),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Test List")));
+
+        ViewInteraction linearLayout4 = onView(
+                allOf(childAtPosition(
+                        allOf(withId(R.id.groceryListContainer),
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        0)),
+                        2),
+                        isDisplayed()));
+        linearLayout4.check(matches(isDisplayed()));
+
+        ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.editGroceryListButton), withText("View/Edit"),
                         withParent(childAtPosition(
                                 withId(R.id.groceryListContainer),
                                 2)),
                         isDisplayed()));
-        appCompatButton4.perform(click());
+        appCompatButton3.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.itemCheckBox),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.listItemContainer),
+                                        0),
+                                0),
+                        isDisplayed()));
+        checkBox.check(matches(isDisplayed()));
 
         ViewInteraction checkBox2 = onView(
                 allOf(withId(R.id.itemCheckBox),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.listItemContainer),
-                                        0),
+                                        1),
                                 0),
                         isDisplayed()));
         checkBox2.check(matches(isDisplayed()));
@@ -348,35 +318,7 @@ public class CreateListTest {
                         isDisplayed()));
         checkBox3.check(matches(isDisplayed()));
 
-        ViewInteraction linearLayout4 = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.listItemContainer),
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        0)),
-                        0),
-                        isDisplayed()));
-        linearLayout4.check(matches(isDisplayed()));
-
-        ViewInteraction linearLayout5 = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.listItemContainer),
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        0)),
-                        1),
-                        isDisplayed()));
-        linearLayout5.check(matches(isDisplayed()));
-
-        ViewInteraction linearLayout6 = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.listItemContainer),
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        0)),
-                        2),
-                        isDisplayed()));
-        linearLayout6.check(matches(isDisplayed()));
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
 
     }
 
