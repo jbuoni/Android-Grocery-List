@@ -5,24 +5,24 @@
 
 ### 1.1 Overall strategy
 
-The overall strategy we will take will be to preform unit, integration and system testing. We will test each completed module completely as a unit, will test and see it's integration results when joining connecting to other units, and will test the overall system as well in the end to ensure nothing has been broken. We will build a finite state machine to model our system, and allow tests to be created in a less confusing way. We will then use the category partition test method, followed by alpha and beta tests to help eliminate as many bugs as possible.
+The overall strategy we will take will be to perform unit, integration and system testing. We will test each completed module completely as a unit, will test and see it's integration results when joining connecting to other units, and will test the overall system as well in the end to ensure nothing has been broken. We will build a finite state machine to model our system, and allow tests to be created in a less confusing way. We will then use the category partition test method, followed by alpha and beta tests to help eliminate as many bugs as possible.
 
 For regression testing we will do a integration test for all units directly connected to the unit that underwent a change.
 
-Some activites that will be preformed as part of are testing process and who will preform them are as follows:
+Some activites that will be performed as part of are testing process and who will preform them are as follows:
 -Finite State Machine Model - Thomas Von Heill
 
 -Category-Partition test method - Thomas Von Heill
 
--White box testing (branch coverage) - Thomas Von Heill
+-White box testing (branch coverage) - All Team Members
 
--Alpha testing - All Team Members
-
--Beta testing - Team Members' freinds and family
+-Alpha and Beta testing - All Team Members
 
 ### 1.2 Test Selection
 
-We will use category-partition and branch coverage methods on all testing levels.
+Unit testing will be done with white-box testing techniques.  Unit tests will be done by the designer of the unit, so knowledge of how the code is designed will be used when creating the tests.
+
+System tests will be done using black-box testing techniques.  These tests will be functional and acceptance tests to verify that the system meets the requirements for the project.
 
 ### 1.3 Adequacy Criterion
 
@@ -34,7 +34,9 @@ Bugs and enhancements will be handled through an e-mail address, and tracked in 
 
 ### 1.5 Technology
 
-At the moment we hope to look into using expresso, TSLGenerator, and Grep.
+Most unit testing will be done with JUnit.  DAO testing will be done with AndroidJUnit4, because a database will have to be created on an emulated device.
+
+Espresso and Sikuli tests were created to automate GUI testing, but this technology was abandoned in favor of manual GUI testing.  Espresso and Sikuli tests frequently crashed for reasons not related to the GLM program.
 
 ## 2 Test Cases
 
