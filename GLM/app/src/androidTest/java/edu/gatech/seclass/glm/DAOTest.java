@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class InstrumentedTest {
+public class DAOTest {
 
     private static int testListId1 = 0;
     private static int testListId2 = 0;
